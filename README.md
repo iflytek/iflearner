@@ -38,7 +38,7 @@ The design of iFLearner is based on a few guiding principles:
 * [Quickstart (keras)](https://iflytek.github.io/iflearner/quick_start/quickstart_keras/)
 
 ## Contributor
-[Contributor](https://iflytek.github.io/iflearner/tutorial/contributor_guide/)
+[Contributor Guide](https://iflytek.github.io/iflearner/tutorial/contributor_guide/)
 
 ## FAQ
 [iFLeaner FAQ](https://iflytek.github.io/iflearner/faq/faq/)

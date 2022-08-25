@@ -32,7 +32,7 @@ iFLearner主要基于以下原则进行设计:
 * [Quickstart (keras)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_keras/)
 
 ## Contributor
-[Contributor](https://iflytek.github.io/iflearner/zh/tutorial/contributor_guide/)
+[Contributor Guide](https://iflytek.github.io/iflearner/zh/tutorial/contributor_guide/)
 
 ## FAQ
 [iFLeaner FAQ](https://iflytek.github.io/zh/iflearner/faq/faq/)
