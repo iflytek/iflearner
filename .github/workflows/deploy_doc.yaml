@@ -1,0 +1,21 @@
+name: DeployDocs
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: export PYTHONPATH=$PYTHONPATH:../iflearner
+      - run: pip install -Ur doc/requirements.txt
+      - run: cd doc && mkdocs gh-deploy --force

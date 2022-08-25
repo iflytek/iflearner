@@ -1,0 +1,52 @@
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+# action的名称
+name: PublishPypi
+
+on:
+  push:
+    branches:
+      - main
+    # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
+    tags:
+      - v*
+    # Triggers the workflow when a release is created
+    release:
+      types: [ created ]
+
+  # 当发布时，触发action
+  #release:
+  #  types: [created]
+
+jobs:
+  deploy:
+    name: publish python package to PYPI
+    # 此作业在 Linux 上运行
+    runs-on: ubuntu-latest
+
+    steps:
+    # 此步骤使用 GitHub 的 https://github.com/actions/checkout
+    - uses: actions/checkout@v3
+
+    # 设置python环境
+    # 此步骤使用 GitHub 的 https://github.com/actions/setup-python
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+
+    # 安装依赖
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+
+    # 构建和发布
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
