@@ -1,9 +1,6 @@
 ![](https://img.shields.io/badge/language-python-blue.svg)
 ![](https://img.shields.io/badge/license-Apache-000000.svg)
-![Docs](https://github.com/iflytek/iflearner/workflows/DeployDocs/badge.svg)
-
-# iFLearner - A Powerful and Lightweight Federated Learning Framework
-[DOCS](https://iflytek.github.io/iflearner/) | [中文](https://iflytek.github.io/iflearner/zh/)
+# iFLearner - A Powerfule and Lightweight Federated Learning Framework
 
 iFLearner is a federated learning framework, which provides a secure computing framework based on 
 data privacy security protection, mainly for federated modeling in deep learning scenarios. Its security bottom 
@@ -12,7 +9,7 @@ privacy. The algorithm layer supports various deep learning network models, and 
 such as Tensorflow, Mxnet, and Pytorch.
  
 ## Architecture
-![iFLeaner Arch](./doc/docs/images/iFLearner框架设计.jpg)
+![iFLeaner Arch](./images/iFLearner框架设计.jpg)
 
 The design of iFLearner is based on a few guiding principles:
 
@@ -28,21 +25,3 @@ The design of iFLearner is based on a few guiding principles:
   
 * **Lightweight and simple**: The framework is Lib level, light enough, and users can simply transform their deep 
   learning algorithms into federated learning algorithms.
-  
-## Documentation
-[iFLeaner Docs](https://iflytek.github.io/iflearner/):
-* [Installation](https://iflytek.github.io/iflearner/quick_start/installation/)
-* [Quickstart (TensorFlow)](https://iflytek.github.io/iflearner/quick_start/quickstart_tensorflow/)
-* [Quickstart (PyTorch)](https://iflytek.github.io/iflearner/quick_start/quickstart_pytorch/)
-* [Quickstart (MXNet)](https://iflytek.github.io/iflearner/quick_start/quickstart_mxnet/)
-* [Quickstart (keras)](https://iflytek.github.io/iflearner/quick_start/quickstart_keras/)
-
-## Contributor
-[iFLeaner FAQ](https://iflytek.github.io/iflearner/tutorial/contributor_guide/)
-
-## FAQ
-[iFLeaner FAQ](https://iflytek.github.io/iflearner/faq/faq/)
-
-## License
-[Apache License 2.0](LICENSE)
-

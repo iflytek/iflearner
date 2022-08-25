@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+message RegistrationResponse {
+  string strategy = 1;                   // The name of strategy.
+  map<string, Parameter> parameters = 2; // All parameters of client
+}
+
+// The request of MSG_UPLOAD_PARAM.
+message UploadParam {
+  int32 epoch = 1;                       // The epoch of training.
+  map<string, Parameter> parameters = 2; // All parameters of client.
+  map<string, double> metrics = 3;       // The client metrics.
+}
+
+// The response of MSG_AGGREGATE_RESULT.
+message AggregateResult {
+  map<string, Parameter> parameters = 1; // Aggregated parameter results.
+}
+
+message Parameter {
+  repeated double values = 1;
+  repeated int32 shape = 2;
+}
+
+message RegistrationInfo {
+  int32 sample_num = 1;
+  int32 step_num = 2;
+}

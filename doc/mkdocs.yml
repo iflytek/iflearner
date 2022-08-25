@@ -1,0 +1,221 @@
+# 网站名称
+site_name: "Iflearner Documents"
+# 网站描述
+site_description: "Document for Iflearner"
+# 作者信息
+site_author: "Iflytek Turing Group"
+# 网站（文档中心）的链接
+#site_url: ***
+# 版权信息
+copyright: Copyright © 2022 <a Powered by iFLYTEK 版权所有</a>
+
+# GitHub库的名称
+repo_name: "iflearner"
+# GitHub库的链接
+repo_url: "https://github.com/iflytek/iflearner.git"
+
+# 指定包含文档源Markdown文件的目录
+docs_dir: docs
+
+theme:
+  name: material
+  nav_style: light
+  highlightjs: true # 打开代码高亮
+  hljs_style: github # 代码高亮风格
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  #  custom_dir: docs/material
+  features:
+    - navigation.tabs # 或者切换为tabs or instant
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.top
+    #    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - search.share
+  #    - header.autohide #为了不让标题行遮挡内容，优化阅读体验，我们设置了让标题行在页面下滑后自动隐藏。
+  hljs_languages:
+    - yaml
+    - c
+    - c++
+    - java
+    - python
+    - go
+  font:
+    text: Roboto
+    code: Roboto Mono
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      primary: teal
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 亮色模式
+
+nav:
+  - Home: index.md
+  - QuickStart:
+      - Installation: quick_start/installation.md
+      - Quickstart Pytorch: quick_start/quickstart_pytorch.md
+      - Quickstart Tensorflow: quick_start/quickstart_tensorflow.md
+      - Quickstart Mxnet: quick_start/quickstart_mxnet.md
+      - Quickstart Keras: quick_start/quickstart_keras.md
+      - Quickstart SMPC: quick_start/quickstart_smpc.md
+      - Quickstart Opacus: quick_start/quickstart_opacus.md
+  - Tutorial:
+      - Startup Option: tutorial/argument.md
+      - Strategy:
+          - Custom Aggregation Strategy: tutorial/custom_aggregation_strategy.md
+          - Fedopt Strategy: tutorial/strategy/fedopt.md
+          - Qfedavg Strategy: tutorial/strategy/qfedavg.md
+          - FedNova Strategy: tutorial/strategy/fednova.md
+      - Contributor Guide: tutorial/contributor_guide.md
+      - Run In Container: tutorial/run_in_container.md
+      - Metrics Visualization: tutorial/metrics_visualization.md
+  - API:
+      - API REFERENCE: api/api_reference.md
+      - Code Reference:
+          - iflearner:
+              - business:
+                  - homo:
+                      - trainer: api/reference/business/homo/trainer.md
+                      - train_client: api/reference/business/homo/train_client.md
+                      - aggregate_server: api/reference/business/homo/aggregate_server.md
+                      - pytorch_trainer: api/reference/business/homo/pytorch_trainer.md
+                      - tensorflow_trainer: api/reference/business/homo/tensorflow_trainer.md
+                      - mxnet_trainer: api/reference/business/homo/mxnet_trainer.md
+                      - keras_trainer: api/reference/business/homo/keras_trainer.md
+                      - argument: api/reference/business/homo/argument.md
+                      - strategy:
+                          - strategy_server: api/reference/business/homo/strategy/strategy_server.md
+                          - strategy_client: api/reference/business/homo/strategy/strategy_client.md
+                          - fedavg_client: api/reference/business/homo/strategy/fedavg_client.md
+                          - fedavg_server: api/reference/business/homo/strategy/fedavg_server.md
+                          - qfedavg_client: api/reference/business/homo/strategy/qfedavg_client.md
+                          - qfedavg_server: api/reference/business/homo/strategy/qfedavg_server.md
+                          - fednova_server: api/reference/business/homo/strategy/fednova_server.md
+                          - fednova_client: api/reference/business/homo/strategy/fednova_client.md
+                          - fedopt_server: api/reference/business/homo/strategy/fedopt_server.md
+                          - fedopt_client: api/reference/business/homo/strategy/fedopt_client.md
+                          - opt:
+                              - fedadagrad: api/reference/business/homo/strategy/opt/fedadagrad.md
+                              - fedadam: api/reference/business/homo/strategy/opt/fedadam.md
+                              - fedavgm: api/reference/business/homo/strategy/opt/fedavgm.md
+                              - fedopt: api/reference/business/homo/strategy/opt/fedopt.md
+                              - fedyogi: api/reference/business/homo/strategy/opt/fedyogi.md
+              - communication:
+                  - base:
+                      - base_client: api/reference/communication/base/base_client.md
+                      - base_server: api/reference/communication/base/base_server.md
+                      - base_exception: api/reference/communication/base/base_exception.md
+                  - homo:
+                      - homo_server: api/reference/communication/homo/homo_server.md
+                      - homo_client: api/reference/communication/homo/homo_client.md
+                      - homo_exception: api/reference/communication/homo/homo_exception.md
+                      - message_type: api/reference/communication/homo/message_type.md
+                  - peer:
+                      - aes: api/reference/communication/peer/aes.md
+                      - diffie_hellman: api/reference/communication/peer/diffie_hellman.md
+                      - diffie_hellman_inst: api/reference/communication/peer/diffie_hellman_inst.md
+                      - peer_server: api/reference/communication/peer/peer_server.md
+                      - peer_client: api/reference/communication/peer/peer_client.md
+  - About:
+      - ChangeLog: about/changelog.md
+      - Contact Us: about/contact.md
+  - FAQ:
+      - Deploy: faq/faq.md
+
+extra_javascript:
+  - assets/js/swagger-ui-bundle.js
+
+extra_css:
+  - css/style.css
+  - css/material.css
+  - css/iflearner.css
+  - assets/css/swagger-ui.css
+
+markdown_extensions:
+  - admonition # 提示块
+  - footnotes # 脚注
+  - meta # 定义元数据，通过文章上下文控制，如disqus
+  - pymdownx.snippets:
+      base_path: "docs/"
+  - pymdownx.caret # 下划线上标
+  - pymdownx.tilde # 删除线下标
+  - pymdownx.critic # 增加删除修改高亮注释，可修饰行内或段落
+  - pymdownx.details # 提示块可折叠
+  - pymdownx.inlinehilite # 行内代码高亮
+  - pymdownx.mark # 文本高亮
+  - pymdownx.smartsymbols # 符号转换
+  - pymdownx.superfences # 代码嵌套在列表里
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - codehilite: # 代码高亮，显示行号
+      guess_lang: false
+      linenums: true
+  - toc: # 锚点
+      permalink: true
+  - pymdownx.betterem: # 对加粗和斜体更好的检测
+      smart_enable: all
+  #    - pymdownx.emoji:  # 表情
+  #        emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.magiclink # 自动识别超链接
+  - pymdownx.tasklist: # 复选框checklist
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+  - awesome-pages
+  - include-markdown
+  - gen-files:
+      scripts:
+        - docs/api/gen_ref_nav.py
+  #    - literate-nav:
+  #        nav_file: SUMMARY.md
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: yes
+            merge_init_into_class: yes
+            show_submodules: no
+          paths: [..]
+  - swagger-ui-tag
+  - i18n:
+      default_language: en
+      languages:
+        en: english
+        zh: 中文
+
+extra:
+  analytics:
+    provider: google
+    property: UA-147297392-7
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/iflytek/iflearner.git
+  alternate:
+    - name: English
+      lang: en
+      link: ""
+    - name: 中文
+      lang: zh
+      link: "zh/"
