@@ -13,7 +13,7 @@ iFLearner is a federated learning framework, which provides a secure computing f
 data privacy security protection, mainly for federated modeling in deep learning scenarios. Its security bottom 
 layer supports various encryption technologies such as homomorphic encryption, secret sharing, and differential 
 privacy. The algorithm layer supports various deep learning network models, and supports mainstream frameworks 
-such as Tensorflow, Mxnet, and Pytorch.
+such as Tensorflow, Mxnet, and Pytorch. 
  
 ## Architecture
 ![iFLeaner Arch](./doc/docs/images/iFLearner框架设计.jpg)
