@@ -40,8 +40,8 @@ The design of iFLearner is based on a few guiding principles:
 * [Quickstart (PyTorch)](https://iflytek.github.io/iflearner/quick_start/quickstart_pytorch/)
 * [Quickstart (MXNet)](https://iflytek.github.io/iflearner/quick_start/quickstart_mxnet/)
 * [Quickstart (keras)](https://iflytek.github.io/iflearner/quick_start/quickstart_keras/)
-* [Quickstart (DP-Opacus)](https://iflytek.github.io/iflearner/quick_start/quickstart_smpc/)
-* [Quickstart (SMPC)](https://iflytek.github.io/iflearner/quick_start/quickstart_opacus/)
+* [Quickstart (DP-Opacus)](https://iflytek.github.io/iflearner/quick_start/quickstart_opacus/)
+* [Quickstart (SMPC)](https://iflytek.github.io/iflearner/quick_start/quickstart_smpc/)
 
 ## Contributor
 [Contributor Guide](https://iflytek.github.io/iflearner/tutorial/contributor_guide/)
