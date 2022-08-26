@@ -1,0 +1,30 @@
+name: Bug Report
+description: Create a report to help us reproduce and correct the bug
+labels: ['bug']
+
+body:
+- type: markdown
+  attributes:
+    value: >
+      #### Thanks for taking the time to fill out this bug report!
+      Before submitting a bug, please make sure the issue hasn't been already
+      addressed by searching through [the past issues](https://github.com/iflytek/iflearner/issues).
+- type: textarea
+  attributes:
+    label: Describe the bug
+    description: >
+      A clear and concise description of what the bug is.
+  validations:
+    required: true
+- type: textarea
+  id: logs
+  attributes:
+    label: Additional Information
+    description: Please copy and paste any relevant Info output.
+    render: shell
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: >
+      Thanks for contributing!

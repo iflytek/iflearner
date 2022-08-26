@@ -11,5 +11,5 @@ pip install iflearner
 
 安装完成后，您可以通过运行以下命令验证是否已成功安装：
 ```shell
-python -c "导入 iflearner;print(iflearner.__version__)"
+python -c "import iflearner;print(iflearner.__version__)"
 ```

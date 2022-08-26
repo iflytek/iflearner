@@ -1,8 +1,12 @@
-![](https://img.shields.io/badge/language-python-blue.svg)
-![](https://img.shields.io/badge/license-Apache-000000.svg)
-![Docs](https://github.com/iflytek/iflearner/workflows/DeployDocs/badge.svg)
-
 # iFLearner - A Powerful and Lightweight Federated Learning Framework
+![](https://img.shields.io/badge/language-python-blue.svg)
+[![Forks](https://img.shields.io/github/forks/iflytek/iflearner)](https://img.shields.io/github/forks/iflytek/iflearner)
+[![Stars](https://img.shields.io/github/stars/iflytek/iflearner)](https://img.shields.io/github/stars/iflytek/iflearner)
+[![Docs](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml)
+[![Pypi](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml)
+[![Contributors](https://img.shields.io/github/contributors/iflytek/iflearner)](https://github.com/iflytek/iflearner/graphs/contributors)
+[![License: Apache2.0](https://img.shields.io/github/license/iflytek/iflearner)](https://github.com/iflytek/iflearner/blob/main/LICENSE)
+
 [DOCS](https://iflytek.github.io/iflearner/) | [中文](https://iflytek.github.io/iflearner/zh/)
 
 iFLearner is a federated learning framework, which provides a secure computing framework based on 
@@ -36,6 +40,8 @@ The design of iFLearner is based on a few guiding principles:
 * [Quickstart (PyTorch)](https://iflytek.github.io/iflearner/quick_start/quickstart_pytorch/)
 * [Quickstart (MXNet)](https://iflytek.github.io/iflearner/quick_start/quickstart_mxnet/)
 * [Quickstart (keras)](https://iflytek.github.io/iflearner/quick_start/quickstart_keras/)
+* [Quickstart (DP-Opacus)](https://iflytek.github.io/iflearner/quick_start/quickstart_smpc/)
+* [Quickstart (SMPC)](https://iflytek.github.io/iflearner/quick_start/quickstart_opacus/)
 
 ## Contributor
 [Contributor Guide](https://iflytek.github.io/iflearner/tutorial/contributor_guide/)

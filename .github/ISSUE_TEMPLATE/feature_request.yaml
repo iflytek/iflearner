@@ -1,0 +1,23 @@
+name: Feature request
+description: As a user, I want to request a feature for iflearner
+title: "[Feature Request]: "
+labels: [kind/feature]
+assignees:
+  - 'dejavu6'
+  - 'xs233'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to request a feature for iflearner!
+  - type: textarea
+    attributes:
+      label: Describe the type of feature and its functionality.
+      description: A concise description of the problem you are facing or the motivetion behind this feature request..
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Is there something else you want to add?
+    validations:
+      required: false

@@ -1,8 +1,12 @@
-![](https://img.shields.io/badge/language-python-blue.svg)
-![](https://img.shields.io/badge/license-Apache-000000.svg)
-![Docs](https://github.com/iflytek/iflearner/workflows/DeployDocs/badge.svg)
-
 # iFLearner - 一个强大且轻量的联邦学习框架
+![](https://img.shields.io/badge/language-python-blue.svg)
+[![Forks](https://img.shields.io/github/forks/iflytek/iflearner)](https://img.shields.io/github/forks/iflytek/iflearner)
+[![Stars](https://img.shields.io/github/stars/iflytek/iflearner)](https://img.shields.io/github/stars/iflytek/iflearner)
+[![Docs](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml)
+[![Pypi](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml)
+[![Contributors](https://img.shields.io/github/contributors/iflytek/iflearner)](https://github.com/iflytek/iflearner/graphs/contributors)
+[![License: Apache2.0](https://img.shields.io/github/license/iflytek/iflearner)](https://github.com/iflytek/iflearner/blob/main/LICENSE)
+
 [DOCS](https://iflytek.github.io/iflearner/zh/) | [英文](https://iflytek.github.io/iflearner/)
 
 iFLearner是一个强大且轻量的联邦学习框架，提供了一种基于数据隐私安全保护的安全计算框架，
@@ -30,6 +34,8 @@ iFLearner主要基于以下原则进行设计:
 * [Quickstart (PyTorch)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_pytorch/)
 * [Quickstart (MXNet)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_mxnet/)
 * [Quickstart (keras)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_keras/)
+* [Quickstart (DP-Opacus)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_smpc/)
+* [Quickstart (SMPC)](https://iflytek.github.io/iflearner/zh/quick_start/quickstart_opacus/)
 
 ## Contributor
 [Contributor Guide](https://iflytek.github.io/iflearner/zh/tutorial/contributor_guide/)
