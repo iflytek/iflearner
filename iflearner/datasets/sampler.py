@@ -2,9 +2,11 @@ from collections import defaultdict
 
 import numpy as np
 
+from iflearner.datasets.utils import partition_class_samples_with_dirichlet_distribution
+
 
 class Sampler:
-    def __init__(self, label: list, clients: list, method="iid"):
+    def __init__(self, label: list, clients: list, method="iid", **kwargs):
         self.targets = np.array(label, dtype="int64")
         self.clients = clients
 
@@ -12,8 +14,13 @@ class Sampler:
             self.client_index = self.iid()
         elif method == "noniid":
             self.client_index = self.noniid()
-        else:
-            pass
+        elif method == "dirichlet":
+            if "alpha" in kwargs:
+                self.client_index = self.dirichlet_distribution_non_iid(
+                    kwargs.get("alpha")
+                )
+            else:
+                self.client_index = self.dirichlet_distribution_non_iid(1)
 
     def iid(self):
         clients_index = defaultdict(set)
@@ -24,13 +31,34 @@ class Sampler:
             clients_index[self.clients[i]] = set(
                 np.random.choice(all_idxs, length // clients_num, replace=False)
             )
-            all_idxs = list(set(all_idxs) - clients_index[i])
+            all_idxs = list(set(all_idxs) - clients_index[self.clients[i]])
 
         return clients_index
 
-    def noniid(self):
+    def dirichlet_distribution_non_iid(self, alpha):
+        clients_index = defaultdict(set)
+
+        N = len(self.targets)
+        K = len(set(self.targets))
+        client_num = len(self.clients)
+        idx_batch = [[] for _ in range(client_num)]
+        for k in range(K):
+            # get a list of batch indexes which are belong to label k
+            idx_k = np.where(self.targets == k)[0]
+
+            idx_batch = partition_class_samples_with_dirichlet_distribution(
+                N, alpha, client_num, idx_batch, idx_k
+            )
+        for i in range(client_num):
+            np.random.shuffle(idx_batch[i])
+            clients_index[self.clients[i]] = set(idx_batch[i])
+        return clients_index
+
+    def noniid(self, num_shards):
         clients_num = len(self.clients)
-        num_shards, num_imgs = clients_num * 15, len(self.targets) // (clients_num * 15)
+        num_shards, num_imgs = num_shards, len(self.targets) // (num_shards)
+        if num_imgs < 1:
+            raise Exception('too many shards, shard number cannot be more than length of targets')
         idx_shard = [i for i in range(num_shards)]
         clients_index = {i: np.array([], dtype="int64") for i in range(clients_num)}
         idxs = np.arange(len(self.targets))
@@ -46,9 +74,9 @@ class Sampler:
                     rand_set = set(np.random.choice(idx_shard, 2, replace=False))
                     idx_shard = list(set(idx_shard) - rand_set)
                     for rand in rand_set:
-                        clients_index[i] = np.concatenate(
+                        clients_index[self.clients[i]] = np.concatenate(
                             (
-                                clients_index[i],
+                                clients_index[self.clients[i]],
                                 idxs[rand * num_imgs : (rand + 1) * num_imgs],
                             ),
                             axis=0,
@@ -57,21 +85,3 @@ class Sampler:
                 pass
         return clients_index
 
-
-if __name__ == "__main__":
-    import pandas as pd
-    from mnist import MNIST
-
-    data = MNIST("./data", True)
-    s = Sampler(data.train_labels, ["1", "2", "3"], "noniid")
-    index = s.client_index
-    print(index)
-    print(s.targets)
-    for name, indexes in s.client_index.items():
-        print(s.targets[indexes])
-
-    df = pd.DataFrame(
-        {name: pd.Series(s.targets[index]) for name, index in s.client_index.items()}
-    )
-    for col in df.columns:
-        print(df[col].value_counts())
