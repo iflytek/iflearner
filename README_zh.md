@@ -2,19 +2,19 @@
 ![](https://img.shields.io/badge/language-python-blue.svg)
 [![Forks](https://img.shields.io/github/forks/iflytek/iflearner)](https://img.shields.io/github/forks/iflytek/iflearner)
 [![Stars](https://img.shields.io/github/stars/iflytek/iflearner)](https://img.shields.io/github/stars/iflytek/iflearner)
+[![Contributors](https://img.shields.io/github/contributors/iflytek/iflearner)](https://github.com/iflytek/iflearner/graphs/contributors)
 [![Docs](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/deploy_doc.yaml)
 [![Pypi](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml/badge.svg)](https://github.com/iflytek/iflearner/actions/workflows/publish_pypi.yaml)
-[![Contributors](https://img.shields.io/github/contributors/iflytek/iflearner)](https://github.com/iflytek/iflearner/graphs/contributors)
 [![License: Apache2.0](https://img.shields.io/github/license/iflytek/iflearner)](https://github.com/iflytek/iflearner/blob/main/LICENSE)
 
 [DOCS](https://iflytek.github.io/iflearner/zh/) | [英文](https://iflytek.github.io/iflearner/)
 
-iFLearner是一个强大且轻量的联邦学习框架，提供了一种基于数据隐私安全保护的安全计算框架，
+iFLearner是一个强大且轻量的联邦学习框架，提供了一种基于数据隐私安全保护的计算框架，
 主要针对深度学习场景下的联邦建模。其安全底层支持同态加密、秘密共享、差分隐私等多种加密技术，
 算法层支持各类深度学习网络模型，并且同时支持Tensorflow、Mxnet、Pytorch等主流框架。
 
 ## 架构
-![iFLeaner Arch](./doc/docs/images/iFLearner框架设计.jpg)
+![iFLeaner Arch](https://github.com/iflytek/iflearner/raw/main/doc/docs/images/iFLearner%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1.jpg)
 
 iFLearner主要基于以下原则进行设计:
 * **事件驱动机制**: 使用事件驱动的编程范式来构建联邦学习，即将联邦学习看成是参与方之间收发消息的过程，
@@ -44,4 +44,4 @@ iFLearner主要基于以下原则进行设计:
 [iFLeaner FAQ](https://iflytek.github.io/zh/iflearner/faq/faq/)
 
 ## License
-[Apache License 2.0](LICENSE)
+[Apache License 2.0](https://github.com/iflytek/iflearner/blob/main/LICENSE)

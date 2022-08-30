@@ -3,16 +3,16 @@ site_name: "Iflearner Documents"
 # 网站描述
 site_description: "Document for Iflearner"
 # 作者信息
-site_author: "Iflytek Turing Group"
+site_author: "iFLYTEK Turing Group"
 # 网站（文档中心）的链接
-#site_url: ***
+site_url: "https://iflytek.github.io/iflearner/"
 # 版权信息
 copyright: Copyright © 2022 <a Powered by iFLYTEK 版权所有</a>
 
 # GitHub库的名称
 repo_name: "iflearner"
 # GitHub库的链接
-repo_url: "https://github.com/iflytek/iflearner.git"
+repo_url: "https://github.com/iflytek/iflearner"
 
 # 指定包含文档源Markdown文件的目录
 docs_dir: docs
@@ -211,7 +211,7 @@ extra:
     property: UA-147297392-7
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/iflytek/iflearner.git
+      link: https://github.com/iflytek/iflearner
   alternate:
     - name: English
       lang: en

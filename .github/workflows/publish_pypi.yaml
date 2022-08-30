@@ -12,8 +12,8 @@ on:
     tags:
       - v*
     # Triggers the workflow when a release is created
-    release:
-      types: [ created ]
+#    release:
+#      types: [ created ]
 
   # 当发布时，触发action
   #release:
