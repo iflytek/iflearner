@@ -92,7 +92,7 @@ def download_url(
 
 
 def list_dir(root: str, prefix: bool = False) -> List[str]:
-    """List all directories at a given root
+    """List all directories at a given root.
 
     Args:
         root (str): Path to directory whose folders need to be listed
@@ -107,7 +107,7 @@ def list_dir(root: str, prefix: bool = False) -> List[str]:
 
 
 def list_files(root: str, suffix: str, prefix: bool = False) -> List[str]:
-    """List all files ending with a suffix at a given root
+    """List all files ending with a suffix at a given root.
 
     Args:
         root (str): Path to directory whose folders need to be listed
@@ -287,7 +287,9 @@ def get_int(b: bytes) -> int:
 
 def open_maybe_compressed_file(path: Union[str, IO]) -> Union[IO, gzip.GzipFile]:
     """Return a file object that possibly decompresses 'path' on the fly.
-    Decompression occurs when argument `path` is a string and ends with '.gz' or '.xz'.
+
+    Decompression occurs when argument `path` is a string and ends with
+    '.gz' or '.xz'.
     """
     import torch
 
@@ -313,7 +315,9 @@ SN3_PASCALVINCENT_TYPEMAP = {
 def read_sn3_pascalvincent_tensor(
     path: Union[str, IO], strict: bool = True
 ) -> np.ndarray:
-    """Read a SN3 file in "Pascal Vincent" format (Lush file 'libidx/idx-io.lsh').
+    """Read a SN3 file in "Pascal Vincent" format (Lush file 'libidx/idx-
+    io.lsh').
+
     Argument may be a filename, compressed filename, or file object.
     """
     # read
@@ -378,3 +382,27 @@ def verify_str_arg(
         raise ValueError(msg)
 
     return value
+
+
+def partition_class_samples_with_dirichlet_distribution(
+    N, alpha, client_num, idx_batch, idx_k
+):
+    np.random.shuffle(idx_k)
+    # using dirichlet distribution to determine the unbalanced proportion for each client (client_num in total)
+    # e.g., when client_num = 4, proportions = [0.29543505 0.38414498 0.31998781 0.00043216], sum(proportions) = 1
+    proportions = np.random.dirichlet(np.repeat(alpha, client_num))
+
+    # get the index in idx_k according to the dirichlet distribution
+    proportions = np.array(
+        [p * (len(idx_j) < N / client_num) for p, idx_j in zip(proportions, idx_batch)]
+    )
+    proportions = proportions / proportions.sum()
+    proportions = (np.cumsum(proportions) * len(idx_k)).astype(int)[:-1]
+
+    # generate the batch list for each client
+    idx_batch = [
+        idx_j + idx.tolist()
+        for idx_j, idx in zip(idx_batch, np.split(idx_k, proportions))
+    ]
+
+    return idx_batch
