@@ -58,7 +58,7 @@ class Sampler:
         clients_num = len(self.clients)
         num_shards, num_imgs = num_shards, len(self.targets) // (num_shards)
         if num_imgs < 1:
-            raise Exception('too many shards, shard number cannot be more than targets')
+            raise Exception('too many shards, shard number cannot be more than length of targets')
         idx_shard = [i for i in range(num_shards)]
         clients_index = {i: np.array([], dtype="int64") for i in range(clients_num)}
         idxs = np.arange(len(self.targets))
