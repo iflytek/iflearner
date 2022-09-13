@@ -1,4 +1,5 @@
 from collections import defaultdict
+from ctypes import Union
 
 import numpy as np
 
@@ -6,10 +7,9 @@ from iflearner.datasets.utils import partition_class_samples_with_dirichlet_dist
 
 
 class Sampler:
-    def __init__(self, label: list, clients: list, method="iid", **kwargs):
+    def __init__(self, label, clients: list, method="iid", **kwargs):
         self.targets = np.array(label, dtype="int64")
         self.clients = clients
-
         if method == "iid":
             self.client_index = self.iid()
         elif method == "noniid":
@@ -21,17 +21,20 @@ class Sampler:
                 )
             else:
                 self.client_index = self.dirichlet_distribution_non_iid(1)
+    @property
+    def get_client_index(self):
+        return self.client_index
 
     def iid(self):
         clients_index = defaultdict(set)
         length = len(self.targets)
         clients_num = len(self.clients)
         all_idxs = np.arange(length)
-        for i in range(clients_num):
-            clients_index[self.clients[i]] = set(
+        for i in self.clients:
+            clients_index[i] = set(
                 np.random.choice(all_idxs, length // clients_num, replace=False)
             )
-            all_idxs = list(set(all_idxs) - clients_index[self.clients[i]])
+            all_idxs = list(set(all_idxs) - clients_index[i])
 
         return clients_index
 
@@ -54,13 +57,11 @@ class Sampler:
             clients_index[self.clients[i]] = set(idx_batch[i])
         return clients_index
 
-    def noniid(self, num_shards):
+    def noniid(self):
         clients_num = len(self.clients)
-        num_shards, num_imgs = num_shards, len(self.targets) // (num_shards)
-        if num_imgs < 1:
-            raise Exception('too many shards, shard number cannot be more than length of targets')
+        num_shards, num_imgs = clients_num * 15, len(self.targets) // (clients_num * 15)
         idx_shard = [i for i in range(num_shards)]
-        clients_index = {i: np.array([], dtype="int64") for i in range(clients_num)}
+        clients_index = {i: np.array([], dtype="int64") for i in self.clients}
         idxs = np.arange(len(self.targets))
         labels = np.array(self.targets)
 
@@ -85,3 +86,20 @@ class Sampler:
                 pass
         return clients_index
 
+
+if __name__ == "__main__":
+    import pandas as pd
+    from mnist import MNIST
+
+    data = MNIST("./data", True)
+    s = Sampler(data.train_labels, ["1", "2", "3"], "dirichlet")
+    d = {}
+    for name, indexes in s.client_index.items():
+        # print(type(s.targets[indexes]))
+        indexes = list(indexes)
+        d[name] = pd.Series(s.targets[indexes])
+        print(s.targets[indexes])
+
+    df = pd.DataFrame(d)
+    for col in df.columns:
+        print(df[col].value_counts())

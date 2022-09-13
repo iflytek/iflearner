@@ -9,12 +9,13 @@ import ssl
 import tarfile
 import zipfile
 from typing import IO, Any, Callable, Iterable, List, Optional, TypeVar, Union
-
+import urllib.request
+import urllib
 import numpy as np
+import yaml
 from tqdm import tqdm
 
 ssl._create_default_https_context = ssl._create_unverified_context
-from torchvision.datasets import MNIST
 
 
 def gen_bar_updater() -> Callable[[int, int, int], None]:
@@ -50,7 +51,7 @@ def check_integrity(fpath: str, md5: Optional[str] = None) -> bool:
 
 
 def download_url(
-    url: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None
+        url: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None
 ) -> None:
     """Download a file from a url and place it in root.
 
@@ -75,15 +76,18 @@ def download_url(
     else:  # download the file
         try:
             print("Downloading " + url + " to " + fpath)
-            urllib.request.urlretrieve(url, fpath, reporthook=gen_bar_updater())
-        except (urllib.error.URLError, IOError) as e:  # type: ignore[attr-defined]
+            urllib.request.urlretrieve(
+                url, fpath, reporthook=gen_bar_updater())
+        # type: ignore[attr-defined]
+        except (urllib.error.URLError, IOError) as e:
             if url[:5] == "https":
                 url = url.replace("https:", "http:")
                 print(
                     "Failed download. Trying https -> http instead."
                     " Downloading " + url + " to " + fpath
                 )
-                urllib.request.urlretrieve(url, fpath, reporthook=gen_bar_updater())
+                urllib.request.urlretrieve(
+                    url, fpath, reporthook=gen_bar_updater())
             else:
                 raise e
         # check integrity of downloaded file
@@ -100,7 +104,8 @@ def list_dir(root: str, prefix: bool = False) -> List[str]:
             only returns the name of the directories found
     """
     root = os.path.expanduser(root)
-    directories = [p for p in os.listdir(root) if os.path.isdir(os.path.join(root, p))]
+    directories = [p for p in os.listdir(
+        root) if os.path.isdir(os.path.join(root, p))]
     if prefix is True:
         directories = [os.path.join(root, d) for d in directories]
     return directories
@@ -127,12 +132,13 @@ def list_files(root: str, suffix: str, prefix: bool = False) -> List[str]:
     return files
 
 
-def _quota_exceeded(response: "requests.models.Response") -> bool:  # type: ignore[name-defined]
+# type: ignore[name-defined]
+def _quota_exceeded(response: "requests.models.Response") -> bool:
     return "Google Drive - Quota exceeded" in response.text
 
 
 def download_file_from_google_drive(
-    file_id: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None
+        file_id: str, root: str, filename: Optional[str] = None, md5: Optional[str] = None
 ):
     """Download a Google Drive file from  and place it in root.
 
@@ -177,7 +183,8 @@ def download_file_from_google_drive(
         _save_response_content(response, fpath)
 
 
-def _get_confirm_token(response: "requests.models.Response") -> Optional[str]:  # type: ignore[name-defined]
+# type: ignore[name-defined]
+def _get_confirm_token(response: "requests.models.Response") -> Optional[str]:
     for key, value in response.cookies.items():
         if key.startswith("download_warning"):
             return value
@@ -186,9 +193,9 @@ def _get_confirm_token(response: "requests.models.Response") -> Optional[str]:  
 
 
 def _save_response_content(
-    response: "requests.models.Response",
-    destination: str,
-    chunk_size: int = 32768,  # type: ignore[name-defined]
+        response: "requests.models.Response",
+        destination: str,
+        chunk_size: int = 32768,  # type: ignore[name-defined]
 ) -> None:
     with open(destination, "wb") as f:
         pbar = tqdm(total=None)
@@ -226,7 +233,7 @@ def _is_zip(filename: str) -> bool:
 
 
 def extract_archive(
-    from_path: str, to_path: Optional[str] = None, remove_finished: bool = False
+        from_path: str, to_path: Optional[str] = None, remove_finished: bool = False
 ) -> None:
     if to_path is None:
         to_path = os.path.dirname(from_path)
@@ -257,12 +264,12 @@ def extract_archive(
 
 
 def download_and_extract_archive(
-    url: str,
-    download_root: str,
-    extract_root: Optional[str] = None,
-    filename: Optional[str] = None,
-    md5: Optional[str] = None,
-    remove_finished: bool = False,
+        url: str,
+        download_root: str,
+        extract_root: Optional[str] = None,
+        filename: Optional[str] = None,
+        md5: Optional[str] = None,
+        remove_finished: bool = False,
 ) -> None:
     download_root = os.path.expanduser(download_root)
     if extract_root is None:
@@ -313,7 +320,7 @@ SN3_PASCALVINCENT_TYPEMAP = {
 
 
 def read_sn3_pascalvincent_tensor(
-    path: Union[str, IO], strict: bool = True
+        path: Union[str, IO], strict: bool = True
 ) -> np.ndarray:
     """Read a SN3 file in "Pascal Vincent" format (Lush file 'libidx/idx-
     io.lsh').
@@ -330,7 +337,7 @@ def read_sn3_pascalvincent_tensor(
     assert nd >= 1 and nd <= 3
     assert ty >= 8 and ty <= 14
     m = SN3_PASCALVINCENT_TYPEMAP[ty]
-    s = [get_int(data[4 * (i + 1) : 4 * (i + 2)]) for i in range(nd)]
+    s = [get_int(data[4 * (i + 1): 4 * (i + 2)]) for i in range(nd)]
     parsed = np.frombuffer(data, dtype=m[1], offset=(4 * (nd + 1)))
     assert parsed.shape[0] == np.prod(s) or not strict
     return parsed.astype(m[1]).reshape(s)
@@ -352,10 +359,10 @@ T = TypeVar("T", str, bytes)
 
 
 def verify_str_arg(
-    value: T,
-    arg: Optional[str] = None,
-    valid_values: Iterable[T] = None,
-    custom_msg: Optional[str] = None,
+        value: T,
+        arg: Optional[str] = None,
+        valid_values: Iterable[T] = None,
+        custom_msg: Optional[str] = None,
 ) -> T:
     if not isinstance(value, (str, bytes)):
         if arg is None:
@@ -377,7 +384,8 @@ def verify_str_arg(
                 "Valid values are {{{valid_values}}}."
             )
             msg = msg.format(
-                value=value, arg=arg, valid_values=iterable_to_str(valid_values)
+                value=value, arg=arg, valid_values=iterable_to_str(
+                    valid_values)
             )
         raise ValueError(msg)
 
@@ -385,7 +393,7 @@ def verify_str_arg(
 
 
 def partition_class_samples_with_dirichlet_distribution(
-    N, alpha, client_num, idx_batch, idx_k
+        N, alpha, client_num, idx_batch, idx_k
 ):
     np.random.shuffle(idx_k)
     # using dirichlet distribution to determine the unbalanced proportion for each client (client_num in total)
@@ -394,7 +402,8 @@ def partition_class_samples_with_dirichlet_distribution(
 
     # get the index in idx_k according to the dirichlet distribution
     proportions = np.array(
-        [p * (len(idx_j) < N / client_num) for p, idx_j in zip(proportions, idx_batch)]
+        [p * (len(idx_j) < N / client_num)
+         for p, idx_j in zip(proportions, idx_batch)]
     )
     proportions = proportions / proportions.sum()
     proportions = (np.cumsum(proportions) * len(idx_k)).astype(int)[:-1]
@@ -406,3 +415,9 @@ def partition_class_samples_with_dirichlet_distribution(
     ]
 
     return idx_batch
+
+
+def read_yaml(filename):
+    with open(filename, encoding="utf-8") as f:
+        case_data = yaml.safe_load(f.read())
+    return case_data

@@ -64,7 +64,8 @@ class MNIST(FLDateset):
         ) and os.path.exists(os.path.join(self.processed_folder, self.test_file))
 
     def download(self) -> None:
-        """Download the MNIST data if it doesn't exist in processed_folder already."""
+        """Download the MNIST data if it doesn't exist in processed_folder
+        already."""
 
         if self._check_exists():
             return
@@ -150,7 +151,8 @@ class KMNIST(MNIST):
 
 
 class EMNIST(MNIST):
-    """`EMNIST <https://www.westernsydney.edu.au/bens/home/reproducible_research/emnist>`_ Dataset.
+    """`EMNIST <https://www.westernsydney.edu.au/bens/home/reproducible_researc
+    h/emnist>`_ Dataset.
 
     Args:
         root (string): Root directory of dataset where ``EMNIST/processed/training.pt``
@@ -220,7 +222,8 @@ class EMNIST(MNIST):
         return "test_{}.pt".format(split)
 
     def download(self) -> None:
-        """Download the EMNIST data if it doesn't exist in processed_folder already."""
+        """Download the EMNIST data if it doesn't exist in processed_folder
+        already."""
         import shutil
 
         if self._check_exists():
