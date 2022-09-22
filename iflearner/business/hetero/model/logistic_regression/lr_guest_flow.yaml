@@ -1,0 +1,13 @@
+role: guest
+steps:
+  - name: step1
+    upstreams:
+      - role: host
+        step: step1
+      - role: arbiter
+        step: step1   
+  - name: step2
+    upstreams:
+      - role: arbiter
+        step: step2   
+  
