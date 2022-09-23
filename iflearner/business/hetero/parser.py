@@ -16,6 +16,7 @@
 import yaml
 import argparse
 from typing import Any, Tuple, Dict, List
+from iflearner.business.hetero.model.role import Role, role_class
 
 
 class Parser:
@@ -31,7 +32,7 @@ class Parser:
 
     party_name: str = None
     model_name: str = None
-    role_name: str = None
+    role_name: Role = None
     model_flow: Dict[str, Any] = dict()
     network_config: Tuple[str, str, str,
                           Dict[str, List[Tuple[str, str]]]] = tuple()
@@ -75,7 +76,7 @@ class Parser:
                     if inst["name"] == self.party_name:
                         network_config.append(inst["addr"])
                         network_config.append(inst["name"])
-                        self.role_name = role_name
+                        self.role_name = role_class(role_name)
                         is_same_role = True
                         break
                     else:

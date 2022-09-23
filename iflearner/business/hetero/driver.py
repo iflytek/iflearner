@@ -14,12 +14,14 @@
 #  ==============================================================================
 
 import os
+import pickle
 import time
 from os.path import join
 from loguru import logger
 
 from iflearner.business.hetero.parser import Parser
 from iflearner.business.hetero.builder.builders import Builders
+from iflearner.business.hetero.model.role import Role, role_class
 from iflearner.communication.hetero.hetero_network import HeteroNetwork
 
 parser = Parser()
@@ -54,7 +56,7 @@ class Driver:
         """Execute flow.
         
         Raise:
-            Exception(f"The return of handle {step_name} is illegal.")
+            Exception(f"The return type of {step_name} is illegal.")
         """
         for step in parser.model_flow["steps"]:
             step_name = step["name"]
@@ -64,24 +66,23 @@ class Driver:
                 for upstream in upstreams:
                     data_list = None
                     while data_list is None:
-                        data_list = self._network.pull(
-                            upstream["role"], upstream["step"])
+                        data_list = self._network.pull(upstream["role"], upstream["step"])
                         time.sleep(1)
                         
-                    self._model.handle_upstream(
-                        upstream["role"], upstream["step"], data_list)
+                    self._model.handle_upstream(upstream["role"], upstream["step"], data_list)
             
             result = self._model.handle_step(step_name)
             if result is None:
                 continue
             
-            if isinstance(result, tuple):
-                self._network.push(result[0], None, step_name, result[1])
-            elif isinstance(result, dict):
-                for party_name, data in result.items():
-                    self._network.push(None, party_name, step_name, data)
-            else:
-                raise Exception(f"The return of handle {step_name} is illegal.")
+            for name, data in result.items():
+                data = pickle.dumps(data)
+                if isinstance(name, Role):
+                    self._network.push(str(name), None, step_name, data)
+                elif isinstance(name, str):
+                    self._network.push(None, name, step_name, data)
+                else:
+                    raise Exception(f"The return type of {step_name} is illegal.")
     
     def run(self, epoch: int=1) -> None:
         """Loop execution process.

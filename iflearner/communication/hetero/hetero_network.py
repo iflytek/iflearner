@@ -50,7 +50,7 @@ class HeteroNetwork:
         self._thread = Thread(target=start_server, args=(addr, self._server))
         self._thread.start()
 
-    def pull(self, role: str, step_name: str) -> List[Tuple[str, bytes]]:
+    def pull(self, role: str, step_name: str) -> Dict[str, bytes]:
         """Pull messages for a specific role step.
         A role may contain several members and we will wait until all members have uploaded their data.
         Returns none if someone is not ready yet.
@@ -63,7 +63,7 @@ class HeteroNetwork:
             Exception(f"{role} is not existed."): Role is not existed.
 
         Returns:
-            List[Tuple[str, bytes]]: Data received from all role members.
+            Dict[str, bytes]: Data received from all role members.
         """
         if role not in self._parties_index_role_name:
             raise Exception(f"{role} is not existed.")

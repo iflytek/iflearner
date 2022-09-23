@@ -14,6 +14,7 @@
 #  ==============================================================================
 
 from abc import ABC, abstractmethod
+from iflearner.business.hetero.model.role import Role
 from iflearner.business.hetero.model.base_model import BaseModel
 
 
@@ -22,11 +23,11 @@ class ModelBuilder(ABC):
     """
 
     @abstractmethod
-    def create_role_model_instance(self, role: str) -> BaseModel:
+    def create_role_model_instance(self, role: Role) -> BaseModel:
         """Create a model instance base on specific role.
 
         Args:
-            role (str): The role name.
+            role (Role): The role name.
 
         Returns:
             BaseModel: Return the base class.
@@ -34,11 +35,11 @@ class ModelBuilder(ABC):
         pass
 
     @abstractmethod
-    def get_role_model_flow_file(self, role: str) -> str:
+    def get_role_model_flow_file(self, role: Role) -> str:
         """Get model flow file by role name.
 
         Args:
-            role (str): The role name.
+            role (Role): The role name.
 
         Returns:
             str: Return the filename.

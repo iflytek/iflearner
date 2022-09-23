@@ -13,25 +13,26 @@
 #  limitations under the License.
 #  ==============================================================================
 
-from typing import Dict, Tuple, List, Union
+from typing import Dict, Tuple, List, Union, Any
+from iflearner.business.hetero.model.role import Role
 
 
-def handle_another_step(data: List[Tuple[str, bytes]]) -> None:
+def handle_another_step(data: Dict[str, Any]) -> None:
     """Handle a step from another role.
 
     Args:
-        data (List[Tuple[str, bytes]]): List data for all role members.
+        data (Dict[str, Any]): List data for all role members. (str: party name, Any: data)
     """
     pass
 
 
-def handle_own_step() -> Union[Tuple[str, bytes], Dict[str, bytes]]:
+def handle_own_step() -> Dict[Union[Role, str], Any]:
     """Handle a own step.
 
     Returns:
-        Union[Tuple[str, bytes], Dict[str, bytes]]:
-            Tuple[str, bytes]: If you want to send the same data to all role members, you need to return this (k: role name, v: data).
-            Dict[str, bytes]: If you want to send unique data to a specific role member, you need to return this (k: party name, v: data).
+        Dict[Union[Role, str], Any]: Return each target and its data.
+            Union[Role, str]: The role class or party name.
+            Any: Return a python object, which we will serialize to bytes using pickle.dumps.
     """
     pass
 
@@ -47,11 +48,11 @@ class BaseModel:
         self._another_steps: Dict[str, handle_another_step] = {}
         self._own_steps: Dict[str, handle_own_step] = {}
 
-    def _register_another_step(self, role: str, step_name: str, func: handle_another_step) -> None:
+    def _register_another_step(self, role: Role, step_name: str, func: handle_another_step) -> None:
         """Register a another step handler.
 
         Args:
-            role (str): The target role name.
+            role (Role): The target role name.
             step_name (str): Unique name for the step.
             func (handle_another_step): The handler you implement.
         """
@@ -66,29 +67,29 @@ class BaseModel:
         """
         self._own_steps[step_name] = func
 
-    def handle_upstream(self, role: str, step_name: str, data: List[Tuple[str, bytes]]) -> None:
+    def handle_upstream(self, role: Role, step_name: str, data: Dict[str, Any]) -> None:
         """Handle specific upstream step from other role.
 
         Args:
-            role (str): The target role name.
+            role (Role): The target role name.
             step_name (str): Unique name for the step.
-            data (List[Tuple[str, bytes]]): List data for all role members.
+            data (Dict[str, Any]): List data for all role members.
         """
         key = f"{role}.{step_name}"
         assert key in self._another_steps, f"{key} is not implemented."
 
         self._another_steps[key](data)
 
-    def handle_step(self, step_name: str) -> Union[Tuple[str, bytes], Dict[str, bytes]]:
+    def handle_step(self, step_name: str) -> Dict[Union[Role, str], Any]:
         """Handle own specific step.
 
         Args:
             step_name (str): Unique name for the step.
 
         Returns:
-            Union[Tuple[str, bytes], Dict[str, bytes]]:
-                Tuple[str, bytes]: If you want to send the same data to all role members, you need to return this (k: role name, v: data).
-                Dict[str, bytes]: If you want to send unique data to a specific role member, you need to return this (k: party name, v: data).
+            Dict[Union[Role, str], Any]: Return each target and its data.
+                Union[Role, str]: The role class or party name.
+                Any: Return a python object, which we will serialize to bytes using pickle.dumps.
         """
         assert step_name in self._own_steps, f"{step_name} is not implemented."
 

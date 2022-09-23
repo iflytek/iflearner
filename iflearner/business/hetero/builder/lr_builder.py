@@ -13,7 +13,7 @@
 #  limitations under the License.
 #  ==============================================================================
 
-from iflearner.business.hetero.model.role import Role
+from iflearner.business.hetero.model.role import Role, Guest, Host, Arbiter
 from iflearner.business.hetero.model.base_model import BaseModel
 from iflearner.business.hetero.model.logistic_regression import lr_guest, lr_host, lr_arbiter
 
@@ -22,38 +22,38 @@ from iflearner.business.hetero.builder.model_builder import ModelBuilder
 
 class LRBuilder(ModelBuilder):
 
-    def create_role_model_instance(self, role: str) -> BaseModel:
+    def create_role_model_instance(self, role: Role) -> BaseModel:
         """Create a model instance base on specific role.
 
         Args:
-            role (str): The role name.
+            role (Role): The role name.
 
         Returns:
             BaseModel: Return the base class.
         """
-        if role == Role.guest:
+        if isinstance(role, Guest):
             return lr_guest.LRGuest()
-        elif role == Role.host:
+        elif isinstance(role, Host):
             return lr_host.LRHost()
-        elif role == Role.arbiter:
+        elif isinstance(role, Arbiter):
             return lr_arbiter.LRArbiter()
 
         raise Exception(f"{role} is not existed.")
 
-    def get_role_model_flow_file(self, role: str) -> str:
+    def get_role_model_flow_file(self, role: Role) -> str:
         """Get model flow file by role name.
 
         Args:
-            role (str): The role name.
+            role (Role): The role name.
 
         Returns:
             str: Return the filename.
         """
-        if role == Role.guest:
+        if isinstance(role, Guest):
             return "lr_guest_flow.yaml"
-        elif role == Role.host:
+        elif isinstance(role, Host):
             return "lr_host_flow.yaml"
-        elif role == Role.arbiter:
+        elif isinstance(role, Arbiter):
             return "lr_arbiter_flow.yaml"
 
         raise Exception(f"{role} is not existed.")

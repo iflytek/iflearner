@@ -13,8 +13,10 @@
 #  limitations under the License.
 #  ==============================================================================
 
-from typing import List, Tuple
-from iflearner.business.hetero.model.role import Role
+from loguru import logger
+from typing import Any, List, Dict, Union
+from phe import paillier
+from iflearner.business.hetero.model.role import Role, host, arbiter
 from iflearner.business.hetero.model.base_model import BaseModel
 
 
@@ -22,31 +24,16 @@ class LRGuest(BaseModel):
     def __init__(self) -> None:
         super().__init__()
 
-        self._register_own_step("step1", self.handle_own_step1)
-        self._register_own_step("step2", self.handle_own_step2)
-
         self._register_another_step(
-            Role.host, "step1", self.handle_host_step1)
-        self._register_another_step(
-            Role.arbiter, "step1", self.handle_arbiter_step1)
-        self._register_another_step(
-            Role.arbiter, "step2", self.handle_arbiter_step2)
+            arbiter, "generate_he_keypair", self.received_he_public_key)
+        self._register_own_step("empty", self.empty)
 
-    def handle_own_step1(self) -> Tuple[str, bytes]:
-        print("Guest step1")
-        return Role.host, "Guest step1 completed.".encode("utf-8")
+    def received_he_public_key(self, data: Dict[str, Any]) -> None:
+        for value in data.values():
+            public_key = paillier.PaillierPublicKey(value)
+            logger.info(f"Public key: {public_key}")
+            self._public_key = public_key
+            break
 
-    def handle_own_step2(self):
-        print("Guest step2")
-
-    def handle_host_step1(self, data: List[Tuple[str, bytes]]):
-        for item in data:
-            print(item[0], item[1].decode("utf-8"))
-
-    def handle_arbiter_step1(self, data: List[Tuple[str, bytes]]):
-        for item in data:
-            print(item[0], item[1].decode("utf-8"))
-
-    def handle_arbiter_step2(self, data: List[Tuple[str, bytes]]):
-        for item in data:
-            print(item[0], item[1].decode("utf-8"))
+    def empty(self) -> Dict[Union[Role, str], Any]:
+        pass

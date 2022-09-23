@@ -13,8 +13,11 @@
 #  limitations under the License.
 #  ==============================================================================
 
-from typing import List, Tuple
-from iflearner.business.hetero.model.role import Role
+from loguru import logger
+from phe import paillier
+from typing import Any, List, Dict, Union
+
+from iflearner.business.hetero.model.role import Role, guest, host
 from iflearner.business.hetero.model.base_model import BaseModel
 
 
@@ -22,20 +25,12 @@ class LRArbiter(BaseModel):
     def __init__(self) -> None:
         super().__init__()
 
-        self._register_own_step("step1", self.handle_own_step1)
-        self._register_own_step("step2", self.handle_own_step2)
+        self._register_own_step("generate_he_keypair",
+                                self.generate_he_keypair)
 
-        self._register_another_step(
-            Role.host, "step2", self.handle_host_step2)
-
-    def handle_own_step1(self) -> Tuple[str, bytes]:
-        print("Arbiter step1")
-        return Role.guest, "Arbiter step1 completed.".encode("utf-8")
-
-    def handle_own_step2(self):
-        print("Arbiter step2")
-        return Role.guest, "Arbiter step2 completed.".encode("utf-8")
-
-    def handle_host_step2(self, data: List[Tuple[str, bytes]]):
-        for item in data:
-            print(item[0], item[1].decode("utf-8"))
+    def generate_he_keypair(self) -> Dict[Union[Role, str], Any]:
+        public_key, private_key = paillier.generate_paillier_keypair()
+        logger.info(f"Public key: {public_key}")
+        self._private_key = private_key
+        return {guest: public_key.n, host: public_key.n}
+    

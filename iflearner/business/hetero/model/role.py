@@ -13,7 +13,42 @@
 #  limitations under the License.
 #  ==============================================================================
 
-class Role:
-    guest = "guest"
-    host = "host"
-    arbiter = "arbiter"
+from abc import ABC, abstractmethod
+
+
+class Role(ABC):
+
+    @abstractmethod
+    def __str__(self) -> str:
+        pass
+
+
+class Guest(Role):
+    def __str__(self) -> str:
+        return "guest"
+
+
+class Host(Role):
+    def __str__(self) -> str:
+        return "host"
+
+
+class Arbiter(Role):
+    def __str__(self) -> str:
+        return "arbiter"
+
+
+guest = Guest()
+host = Host()
+arbiter = Arbiter()
+
+
+def role_class(name: str) -> Role:
+    if name == str(guest):
+        return guest
+    elif name == str(host):
+        return host
+    elif name == str(arbiter):
+        return arbiter
+    else:
+        raise Exception(f"Role {name} is not existed.")

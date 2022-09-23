@@ -1,13 +1,6 @@
 role: guest
 steps:
-  - name: step1
-    upstreams:
-      - role: host
-        step: step1
-      - role: arbiter
-        step: step1   
-  - name: step2
+  - name: empty
     upstreams:
       - role: arbiter
-        step: step2   
-  
+        step: generate_he_keypair
