@@ -19,7 +19,7 @@ from os.path import join
 from loguru import logger
 
 from iflearner.business.hetero.parser import Parser
-from iflearner.business.hetero.builder.lr_builder import LRBuilder
+from iflearner.business.hetero.builder.builders import Builders
 from iflearner.communication.hetero.hetero_network import HeteroNetwork
 
 parser = Parser()
@@ -40,8 +40,11 @@ class Driver:
         """Init the class.
         """
         logger.add(f"log/{parser.model_name}_{parser.role_name}.log", backtrace=True, diagnose=True)
-        self._model = LRBuilder().create_role_model_instance(parser.role_name)
-        parser.parse_model_flow_file(join("model", parser.model_name, LRBuilder().get_role_model_flow_file(parser.role_name)))
+        if parser.model_name not in Builders:
+            raise Exception(f"{parser.model_name} is not existed.")
+        
+        self._model = Builders[parser.model_name].create_role_model_instance(parser.role_name)
+        parser.parse_model_flow_file(join("model", parser.model_name, Builders[parser.model_name].get_role_model_flow_file(parser.role_name)))
         
         logger.info(f"Model flow: {parser.model_flow}")
         logger.info(f"Network config: {parser.network_config}")
