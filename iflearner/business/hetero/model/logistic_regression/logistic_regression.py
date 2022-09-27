@@ -183,6 +183,7 @@ class ClientC(Client):
         super().__init__(config)
         self.A_data_shape = A_d_shape
         self.B_data_shape = B_d_shape
+        print(A_d_shape, B_d_shape)
         self.public_key = None
         self.private_key = None
         # 保存训练中的损失值（泰展开近似）

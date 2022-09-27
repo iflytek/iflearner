@@ -17,6 +17,7 @@ import os
 import pickle
 import time
 from os.path import join
+from typing import Any
 from loguru import logger
 
 from iflearner.business.hetero.parser import Parser
@@ -46,43 +47,60 @@ class Driver:
             raise Exception(f"{parser.model_name} is not existed.")
         
         self._model = Builders[parser.model_name].create_role_model_instance(parser.role_name)
-        parser.parse_model_flow_file(join("model", parser.model_name, Builders[parser.model_name].get_role_model_flow_file(parser.role_name)))
-        
+        self._model.set_hyper_params(parser.hyper_params)
+    
+        parser.parse_model_flow_file(join("model", parser.model_name, Builders[parser.model_name].get_role_model_flow_file(parser.role_name)))    
         logger.info(f"Model flow: {parser.model_flow}")
         logger.info(f"Network config: {parser.network_config}")
         self._network = HeteroNetwork(*parser.network_config)
+        self._init_steps = False
     
-    def _exec_flow(self) -> None:
-        """Execute flow.
+    def _exec_steps(self, steps: Any) -> None:
+        """Execute steps.
+        
+        Args:
+            steps (Any): Details of the steps.
         
         Raise:
-            Exception(f"The return type of {step_name} is illegal.")
+            Exception(f"The return type of {step.name} is illegal.")
         """
-        for step in parser.model_flow["steps"]:
-            step_name = step["name"]
-            upstreams = step["upstreams"]
-            logger.info(f"Step: {step_name}, Upstreams: {upstreams}")
-            if upstreams is not None:
-                for upstream in upstreams:
-                    data_list = None
-                    while data_list is None:
-                        data_list = self._network.pull(upstream["role"], upstream["step"])
-                        time.sleep(1)
-                        
-                    self._model.handle_upstream(upstream["role"], upstream["step"], data_list)
+        for step in steps:
+            logger.info(f"{step}")
+            for upstream in step.upstreams:
+                data_list = None
+                while data_list is None:
+                    data_list = self._network.pull(upstream.role, upstream.step)
+                    time.sleep(1)
+                    
+                self._model.handle_upstream(upstream.role, upstream.step, data_list)
             
-            result = self._model.handle_step(step_name)
+            if step.virtual is True:
+                continue
+            
+            result = self._model.handle_step(step.name)
             if result is None:
                 continue
             
             for name, data in result.items():
                 data = pickle.dumps(data)
                 if isinstance(name, Role):
-                    self._network.push(str(name), None, step_name, data)
+                    self._network.push(str(name), None, step.name, data)
                 elif isinstance(name, str):
-                    self._network.push(None, name, step_name, data)
+                    self._network.push(None, name, step.name, data)
                 else:
-                    raise Exception(f"The return type of {step_name} is illegal.")
+                    raise Exception(f"The return type of {step.name} is illegal.")
+                
+    def _exec_model_flow(self) -> None:
+        """Execute model flow.
+        
+        Raise:
+            Exception(f"The return type of {step.name} is illegal.")
+        """
+        if not self._init_steps and parser.model_flow.init_steps is not None:
+            self._exec_steps(parser.model_flow.init_steps)
+            self._init_steps = True
+            
+        self._exec_steps(parser.model_flow.steps)
     
     def run(self, epoch: int=1) -> None:
         """Loop execution process.
@@ -92,11 +110,11 @@ class Driver:
         """
         for i in range(epoch):
             logger.info(f"Start epoch {i+1}")
-            self._exec_flow()
+            self._exec_model_flow()
     
 if __name__ == "__main__":
     parser.parse_task_configuration_file()
     driver = Driver()
-    driver.run()
+    driver.run(parser.epochs)
     os._exit(0)
     

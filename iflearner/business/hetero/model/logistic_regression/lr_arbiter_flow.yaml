@@ -1,4 +1,13 @@
 role: arbiter
-steps:
+init_steps:
   - name: generate_he_keypair
     upstreams: null
+steps:
+  - name: decrypt_guest_data
+    upstreams:
+      - role: guest
+        step: calc_final_result_with_host
+  - name: decrypt_host_data
+    upstreams:
+      - role: host
+        step: calc_final_result_with_guest

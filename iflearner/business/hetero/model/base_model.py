@@ -13,6 +13,7 @@
 #  limitations under the License.
 #  ==============================================================================
 
+from abc import ABC, abstractmethod
 from typing import Dict, Tuple, List, Union, Any
 from iflearner.business.hetero.model.role import Role
 
@@ -37,7 +38,7 @@ def handle_own_step() -> Dict[Union[Role, str], Any]:
     pass
 
 
-class BaseModel:
+class BaseModel(ABC):
     '''Define each step of model training and evaluation.
 
     You need to split the whole process into steps, then you need to implement it and register it with self._register_own_step.
@@ -47,6 +48,15 @@ class BaseModel:
     def __init__(self) -> None:
         self._another_steps: Dict[str, handle_another_step] = {}
         self._own_steps: Dict[str, handle_own_step] = {}
+
+    @abstractmethod
+    def set_hyper_params(self, hyper_params: Any) -> None:
+        """Set hyper params.
+
+        Args:
+            hyper_params (Any): Details of the hyper params.
+        """
+        pass
 
     def _register_another_step(self, role: Role, step_name: str, func: handle_another_step) -> None:
         """Register a another step handler.
