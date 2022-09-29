@@ -16,7 +16,8 @@
 import time
 from threading import Thread
 from loguru import logger
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
+from iflearner.business.hetero.model.role import Role
 from iflearner.communication.base.base_server import start_server
 from iflearner.communication.hetero.hetero_client import HeteroClient
 from iflearner.communication.hetero.hetero_server import HeteroServer
@@ -77,28 +78,28 @@ class HeteroNetwork:
 
         return self._server.messages.pop(key)
 
-    def push(self, role: str, party_name: str, step_name: str, data: bytes) -> None:
+    def push(self, name: Union[Role, str], step_name: str, data: bytes) -> None:
         """Push a message to a specific destination, which you can specify using a role or party name.
         If you use a role name, we will send the data to all role members.
         If you use a party name, we will only send the data to the specific target.
 
         Args:
-            role (str): The role name. 
-            party_name (str): The party name.
+            name (Union[Role, str]): The role or party name.
             step_name (str): Current step name.
             data (bytes): The data needs to be sent.
 
         Raises:
-            Exception(f"{role} is not existed."): Role is not existed.
-            Exception(f"{party_name} is not existed."): Party is not existed.
+            Exception(f"Role {name} is not existed."): Role is not existed.
+            Exception(f"Party {name} is not existed."): Party is not existed.
         """
         logger.info(
-            f"Post message, role: {role}, party: {party_name}, step: {step_name}, data length: {len(data)}")
-        if role is not None:
-            if role not in self._parties_index_role_name:
-                raise Exception(f"{role} is not existed.")
+            f"Post message, name: {name}, step: {step_name}, data length: {len(data)}")
+        if isinstance(name, Role):
+            name = str(name)
+            if name not in self._parties_index_role_name:
+                raise Exception(f"Role {name} is not existed.")
 
-            for client in self._parties_index_role_name[role]:
+            for client in self._parties_index_role_name[name]:
                 while True:
                     try:
                         client.post(step_name, data)
@@ -106,10 +107,8 @@ class HeteroNetwork:
                     except Exception as e:
                         logger.warning(e)
                         time.sleep(3)
-        elif party_name is not None:
-            if party_name not in self._parties_index_party_name:
-                raise Exception(f"{party_name} is not existed.")
-
-            self._parties_index_party_name[party_name].post(step_name, data)
         else:
-            raise Exception("You need to specify one of role and party name.")
+            if name not in self._parties_index_party_name:
+                raise Exception(f"Party {name} is not existed.")
+
+            self._parties_index_party_name[name].post(step_name, data)

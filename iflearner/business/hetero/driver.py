@@ -22,7 +22,6 @@ from loguru import logger
 
 from iflearner.business.hetero.parser import Parser
 from iflearner.business.hetero.builder.builders import Builders
-from iflearner.business.hetero.model.role import Role, role_class
 from iflearner.communication.hetero.hetero_network import HeteroNetwork
 
 parser = Parser()
@@ -60,9 +59,6 @@ class Driver:
         
         Args:
             steps (Any): Details of the steps.
-        
-        Raise:
-            Exception(f"The return type of {step.name} is illegal.")
         """
         for step in steps:
             logger.info(f"{step}")
@@ -83,12 +79,7 @@ class Driver:
             
             for name, data in result.items():
                 data = pickle.dumps(data)
-                if isinstance(name, Role):
-                    self._network.push(str(name), None, step.name, data)
-                elif isinstance(name, str):
-                    self._network.push(None, name, step.name, data)
-                else:
-                    raise Exception(f"The return type of {step.name} is illegal.")
+                self._network.push(name, step.name, data)
                 
     def _exec_model_flow(self) -> None:
         """Execute model flow.

@@ -65,9 +65,6 @@ class LRGuest(BaseModel):
         logger.info(f"Public key: {public_key}")
         self._public_key = public_key
 
-    def get_he_public_key(self) -> None:
-        pass
-
     def calc_guest_partial_result(self) -> Dict[Union[Role, str], Any]:
         """Calculate your own partial results.
 
