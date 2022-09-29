@@ -27,6 +27,7 @@ class PissException(base_exception.BaseException):
         AlreadyExistsPartyName = auto()
         Unregistered = auto()
         InsufficientParty = auto()
+        IllegalQuery = auto()
         InternalError = auto()
 
     def __init__(self, code: PissResponseCode, message: str) -> None:

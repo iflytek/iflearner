@@ -16,6 +16,9 @@ from operator import imod
 import timeit
 from tkinter import NO
 from typing import Any
+import time
+from threading import Thread
+import os
 
 from loguru import logger
 import threading
@@ -37,7 +40,7 @@ class PissClientServices(PissBase):
                         ) -> None:
         super().__init__(party_name, route, cert_path)
 
-        self._secrets_sum = {}
+        self._secrets_sum = None
         self._strategy = piss_strategy_client.PissStrategyClient(self._cert_path, self._party_name, self._options, data_path)
         self._server_stub = self._strategy.generate_stub(server_addr)
 
@@ -60,6 +63,9 @@ class PissClientServices(PissBase):
                 resp = self._send(stub,req)
             elif type == message_type.MSG_RETURN_ENCRYPTED_DATA_SUM:
                 resp = self._post(stub,req)
+            elif type == message_type.MSG_END_QUERY:
+                resp = self._callback(self._server_stub,req)
+
             if resp.code != 0:  # type: ignore
                 raise PissException(code=PissException.PissResponseCode(resp.code), message=resp.message  # type: ignore
                     )
@@ -208,19 +214,54 @@ class PissClientServices(PissBase):
                 f"IN: party: {request.party_name}, message type: {request.type}, time: {1000 * (stop - start)}ms"
             ) 
 
-    def callback(self,  request: base_pb2.BaseRequest) -> base_pb2.BaseResponse:
+    def callback(self,  request: base_pb2.BaseRequest, context: Any) -> base_pb2.BaseResponse:
         """Call callback function."""
-        resp = None 
-        return resp
+        try:
+            start = timeit.default_timer()
+            resp_data = None
+            code = 0
+
+            if request.type == message_type.MSG_GET_SUM_SECRETS:
+                if self._strategy.secrets_sum_ready():
+                    resp_data = piss_pb2.SecretsSUM(secrets_sum = str(self._secrets_sum))
+            elif request.type == message_type.MSG_END_QUERY:
+                if self._party_name == self._strategy.get_initiator_party_name():
+                    resp = self.transport(type = message_type.MSG_END_QUERY)
+                    if resp.code != 0:  # 
+                        raise PissException(code=PissException.PissResponseCode(resp.code), 
+                                            message=resp.message  # type: ignore
+                                            ) 
+                def sleep():
+                    time.sleep(3)
+                    os._exit(0)
+                Thread(target=sleep).start()
+          
+        except PissException as e:
+            logger.info(e)
+            return base_pb2.BaseResponse(code=e.code, message=e.message)
+        except Exception as e:
+            logger.info(e)
+            return base_pb2.BaseResponse(
+                code=PissException.PissResponseCode.InternalError, message=str(e)
+                )
+        else:
+            if resp_data is None:
+                return base_pb2.BaseResponse(code = code)
+            return base_pb2.BaseResponse(code = code, data=resp_data.SerializeToString())  # type: ignore
+        finally:
+            stop = timeit.default_timer()
+            logger.info(
+                f"IN: party: {request.party_name}, message type: {request.type}, time: {1000 * (stop - start)}ms"
+            ) 
 
     def timer_sub(self):
-        t = threading.Timer(2,self.timer_sub)
+        t = threading.Timer(message_type.MSG_SUM_TIME,self.timer_sub)
         if self._strategy.is_start_key_sum():
             t.cancel()
             try:
                 start = timeit.default_timer()
                 resp = self._strategy.sub_key_sum()
-                if resp != 'initiator':
+                if resp != message_type.MSG_INITIATOR:
                     sub_key_sum = piss_pb2.SubSecretsSUM(sub_keys_sum = resp)
                     initiator_stub = self._strategy.get_initiator_stub()
                     resp = self.transport(type = message_type.MSG_RETURN_ENCRYPTED_DATA_SUM,
@@ -244,16 +285,12 @@ class PissClientServices(PissBase):
         t.start()
 
     def timer_sum(self):
-        t = threading.Timer(2,self.timer_sum)
+        t = threading.Timer(message_type.MSG_SUM_TIME,self.timer_sum)
         if self._strategy.is_start_reconstruct():
             t.cancel()
             try:
                 start = timeit.default_timer()
                 self._secrets_sum = self._strategy.reconstruct_sum_secrets()
-                logger.info(
-                    f"IN: party: {self._party_name}, secrets_sum: {self._secrets_sum}"
-                ) 
-                #print(self._secrets_sum)
             except PissException as e:
                 logger.info(e)
             except Exception as e:

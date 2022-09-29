@@ -26,5 +26,16 @@ MSG_SHARE_ENCRYPTED_SECRETS  = "msg_share_encrypted_secrets"
 MSG_RETURN_ENCRYPTED_DATA_SUM = "msg_return_encrypted_data_sum"
 
 MSG_INIT_DATA = "msg_init_data"
+MSG_GET_SUM_SECRETS = "msg_get_sum_secrets"
+MSG_END_QUERY = "msg_end_query"
+
+"""Define the heartbeat interval between client and client service."""
+MSG_HEARTBEAT_INTERVAL = 10
+
+"""Define the heartbeat interval of Sum time."""
+MSG_SUM_TIME = 2
+
+MSG_INITIATOR = "msg_initiator"
+
 
 

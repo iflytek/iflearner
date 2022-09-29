@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\npiss.proto\x12\x07pissPKG\"!\n\x10RegistrationInfo\x12\r\n\x05route\x18\x01 \x01(\t\"\x1d\n\x08InitData\x12\x11\n\tdata_path\x18\x01 \x01(\t\"\xb3\x01\n\x12ParticipantsRoutes\x12\x37\n\x06routes\x18\x01 \x03(\x0b\x32\'.pissPKG.ParticipantsRoutes.RoutesEntry\x12\x17\n\x0finitiator_route\x18\x02 \x01(\t\x12\x1c\n\x14initiator_party_name\x18\x03 \x01(\t\x1a-\n\x0bRoutesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xab\x01\n\x14ShareEncryptionParam\x12L\n\x10\x65ncryption_param\x18\x01 \x03(\x0b\x32\x32.pissPKG.ShareEncryptionParam.EncryptionParamEntry\x12\r\n\x05route\x18\x02 \x01(\t\x1a\x36\n\x14\x45ncryptionParamEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x99\x02\n\x15ShareEncryptedSecrets\x12=\n\x08sub_keys\x18\x01 \x03(\x0b\x32+.pissPKG.ShareEncryptedSecrets.SubKeysEntry\x12\x44\n\x0b\x63ommitments\x18\x02 \x03(\x0b\x32/.pissPKG.ShareEncryptedSecrets.CommitmentsEntry\x12\x17\n\x0frecv_party_name\x18\x03 \x01(\t\x1a.\n\x0cSubKeysEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x32\n\x10\x43ommitmentsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x80\x01\n\rSubSecretsSUM\x12<\n\x0csub_keys_sum\x18\x01 \x03(\x0b\x32&.pissPKG.SubSecretsSUM.SubKeysSumEntry\x1a\x31\n\x0fSubKeysSumEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\npiss.proto\x12\x07pissPKG\"!\n\x10RegistrationInfo\x12\r\n\x05route\x18\x01 \x01(\t\"\x1d\n\x08InitData\x12\x11\n\tdata_path\x18\x01 \x01(\t\"\xb3\x01\n\x12ParticipantsRoutes\x12\x37\n\x06routes\x18\x01 \x03(\x0b\x32\'.pissPKG.ParticipantsRoutes.RoutesEntry\x12\x17\n\x0finitiator_route\x18\x02 \x01(\t\x12\x1c\n\x14initiator_party_name\x18\x03 \x01(\t\x1a-\n\x0bRoutesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xab\x01\n\x14ShareEncryptionParam\x12L\n\x10\x65ncryption_param\x18\x01 \x03(\x0b\x32\x32.pissPKG.ShareEncryptionParam.EncryptionParamEntry\x12\r\n\x05route\x18\x02 \x01(\t\x1a\x36\n\x14\x45ncryptionParamEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x99\x02\n\x15ShareEncryptedSecrets\x12=\n\x08sub_keys\x18\x01 \x03(\x0b\x32+.pissPKG.ShareEncryptedSecrets.SubKeysEntry\x12\x44\n\x0b\x63ommitments\x18\x02 \x03(\x0b\x32/.pissPKG.ShareEncryptedSecrets.CommitmentsEntry\x12\x17\n\x0frecv_party_name\x18\x03 \x01(\t\x1a.\n\x0cSubKeysEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x32\n\x10\x43ommitmentsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x80\x01\n\rSubSecretsSUM\x12<\n\x0csub_keys_sum\x18\x01 \x03(\x0b\x32&.pissPKG.SubSecretsSUM.SubKeysSumEntry\x1a\x31\n\x0fSubKeysSumEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"!\n\nSecretsSUM\x12\x13\n\x0bsecrets_sum\x18\x01 \x01(\t\"!\n\x08\x43\x61llBack\x12\x15\n\rcall_back_msg\x18\x01 \x01(\tb\x06proto3')
 
 
 
@@ -29,6 +29,8 @@ _SHAREENCRYPTEDSECRETS_SUBKEYSENTRY = _SHAREENCRYPTEDSECRETS.nested_types_by_nam
 _SHAREENCRYPTEDSECRETS_COMMITMENTSENTRY = _SHAREENCRYPTEDSECRETS.nested_types_by_name['CommitmentsEntry']
 _SUBSECRETSSUM = DESCRIPTOR.message_types_by_name['SubSecretsSUM']
 _SUBSECRETSSUM_SUBKEYSSUMENTRY = _SUBSECRETSSUM.nested_types_by_name['SubKeysSumEntry']
+_SECRETSSUM = DESCRIPTOR.message_types_by_name['SecretsSUM']
+_CALLBACK = DESCRIPTOR.message_types_by_name['CallBack']
 RegistrationInfo = _reflection.GeneratedProtocolMessageType('RegistrationInfo', (_message.Message,), {
   'DESCRIPTOR' : _REGISTRATIONINFO,
   '__module__' : 'piss_pb2'
@@ -111,6 +113,20 @@ SubSecretsSUM = _reflection.GeneratedProtocolMessageType('SubSecretsSUM', (_mess
 _sym_db.RegisterMessage(SubSecretsSUM)
 _sym_db.RegisterMessage(SubSecretsSUM.SubKeysSumEntry)
 
+SecretsSUM = _reflection.GeneratedProtocolMessageType('SecretsSUM', (_message.Message,), {
+  'DESCRIPTOR' : _SECRETSSUM,
+  '__module__' : 'piss_pb2'
+  # @@protoc_insertion_point(class_scope:pissPKG.SecretsSUM)
+  })
+_sym_db.RegisterMessage(SecretsSUM)
+
+CallBack = _reflection.GeneratedProtocolMessageType('CallBack', (_message.Message,), {
+  'DESCRIPTOR' : _CALLBACK,
+  '__module__' : 'piss_pb2'
+  # @@protoc_insertion_point(class_scope:pissPKG.CallBack)
+  })
+_sym_db.RegisterMessage(CallBack)
+
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -146,4 +162,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _SUBSECRETSSUM._serialized_end=858
   _SUBSECRETSSUM_SUBKEYSSUMENTRY._serialized_start=809
   _SUBSECRETSSUM_SUBKEYSSUMENTRY._serialized_end=858
+  _SECRETSSUM._serialized_start=860
+  _SECRETSSUM._serialized_end=893
+  _CALLBACK._serialized_start=895
+  _CALLBACK._serialized_end=928
 # @@protoc_insertion_point(module_scope)

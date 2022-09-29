@@ -18,11 +18,11 @@ from typing import Any, Dict, Union
 from loguru import logger
 
 from iflearner.communication.mpc.piss import piss_client_services
+from iflearner.communication.mpc.piss import piss_client
 from iflearner.communication.base import base_server
 from iflearner.communication.mpc.piss import message_type
 from iflearner.communication.mpc.piss import piss_pb2
-import grpc
-from iflearner.communication.base import base_pb2, base_pb2_grpc,base_server,constant
+from iflearner.communication.base import base_server
 
 
 class PissClientServicesController:
@@ -50,39 +50,16 @@ class PissClientServicesController:
 
 class PissClientController:
     def __init__(self, args: argparse.Namespace) -> None:
-        
         self._args = args
-        self._options = [
-                ("grpc.max_message_length", constant.MAX_MSG_LENGTH),
-                ("grpc.max_send_message_length", constant.MAX_MSG_LENGTH),
-                ("grpc.max_receive_message_length", constant.MAX_MSG_LENGTH),
-            ]
-
-        self._channel = grpc.insecure_channel(self._args.addr, options = self._options)
-        self._stub = base_pb2_grpc.BaseStub(self._channel)
-        self._encryption_param = self._args.param
-        self._data_path = self._args.data
-        self._party_name = self._args.name
-
-    def init_data(self):
-
-        data = piss_pb2.InitData(data_path = self._data_path)
-        req = base_pb2.BaseRequest(party_name = self._party_name,
-                               type = message_type.MSG_INIT_DATA,
-                               data = data.SerializeToString())
-        resp = self._stub.send(req)
-
+        self._piss_client_inst = piss_client.PissClient(party_name= self._args.name,
+                                                    server_addr = self._args.server,
+                                                    cert_path=  self._args.cert,
+                                                    data_path= self._args.data,
+                                                    encryption_param = self._args.param
+                                                    )
     def start_querty(self):
-        
-        #encryption_param = {'10001':'Age', '10002':'Money'}
-        #encryption_param = json.loads(self._encryption_param)
-        data = piss_pb2.ShareEncryptionParam(encryption_param = self._encryption_param)
+        self._piss_client_inst.start_querty()
 
-        req = base_pb2.BaseRequest(party_name = self._party_name,
-                               type = message_type.MSG_START_QUERY,
-                               data = data.SerializeToString())
-
-        resp = self._stub.send(req)
-
-
-
+    def get_secrets_sum(self):
+        secrets_sum = self._piss_client_inst.get_secrets_sum()
+        return secrets_sum
