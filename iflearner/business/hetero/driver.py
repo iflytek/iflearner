@@ -99,6 +99,12 @@ class Driver:
         Args:
             epoch (int, optional): The number of epochs we need to run. Defaults to 1.
         """
+        
+        if epoch == -1:
+            while True:
+                logger.info("Infinite loop")
+                self._exec_model_flow()
+                
         for i in range(epoch):
             logger.info(f"Start epoch {i+1}")
             self._exec_model_flow()
