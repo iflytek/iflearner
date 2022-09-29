@@ -1,0 +1,38 @@
+syntax = "proto3";
+package pissPKG;
+
+message RegistrationInfo {
+    string route = 1;
+}
+
+message InitData {
+    string data_path = 1;
+}
+
+//from server to all clients
+message ParticipantsRoutes{
+    map<string, string> routes = 1;
+    string initiator_route = 2;
+    string initiator_party_name = 3;
+}
+
+//from init to clients
+message ShareEncryptionParam{
+    map<string, string> encryption_param = 1; 
+    string route = 2;
+}
+
+//form client to clients
+message ShareEncryptedSecrets{
+    map<string, string> sub_keys = 1;  
+    map<string, string> commitments = 2;
+    string recv_party_name = 3;
+}
+
+message SubSecretsSUM{
+    map<string, string> sub_keys_sum= 1;  
+}
+
+
+
+
