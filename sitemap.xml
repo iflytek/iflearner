@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+         <loc>https://iflytek.github.io/iflearner/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/aggregate_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/aggregate_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/aggregate_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/argument/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/argument/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/argument/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/keras_trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/keras_trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/keras_trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/mxnet_trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/mxnet_trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/mxnet_trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/pytorch_trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/pytorch_trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/pytorch_trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/sklearn_trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/sklearn_trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/sklearn_trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/tensorflow_trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/tensorflow_trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/tensorflow_trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/train_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/train_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/train_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/trainer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/trainer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/trainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fedavg_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fedavg_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fedavg_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fedavg_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fedavg_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fedavg_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fednova_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fednova_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fednova_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fednova_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fednova_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fednova_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fedopt_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fedopt_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fedopt_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/fedopt_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/fedopt_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/fedopt_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/qfedavg_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/qfedavg_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/qfedavg_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/qfedavg_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/qfedavg_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/qfedavg_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/strategy_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/strategy_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/strategy_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/strategy_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/strategy_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/strategy_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/fedadagrad/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/fedadagrad/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/fedadagrad/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/fedadam/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/fedadam/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/fedadam/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/fedavgm/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/fedavgm/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/fedavgm/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/fedopt/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/fedopt/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/fedopt/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/homo/strategy/opt/fedyogi/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/homo/strategy/opt/fedyogi/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/homo/strategy/opt/fedyogi/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/util/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/util/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/util/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/util/metric/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/util/metric/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/util/metric/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/business/util/metric_dev/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/business/util/metric_dev/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/business/util/metric_dev/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/base_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/base_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/base_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/base_exception/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/base_exception/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/base_exception/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/base_pb2/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/base_pb2/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/base_pb2/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/base_pb2_grpc/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/base_pb2_grpc/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/base_pb2_grpc/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/base_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/base_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/base_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/base/constant/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/base/constant/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/base/constant/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/hetero/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/hetero/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/hetero/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/homo_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/homo_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/homo_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/homo_exception/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/homo_exception/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/homo_exception/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/homo_pb2/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/homo_pb2/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/homo_pb2/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/homo_pb2_grpc/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/homo_pb2_grpc/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/homo_pb2_grpc/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/homo_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/homo_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/homo_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/homo/message_type/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/homo/message_type/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/homo/message_type/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/aes/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/aes/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/aes/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/diffie_hellman/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/diffie_hellman/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/diffie_hellman/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/diffie_hellman_inst/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/diffie_hellman_inst/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/diffie_hellman_inst/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/message_type/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/message_type/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/message_type/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/peer_client/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/peer_client/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/peer_client/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/communication/peer/peer_server/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/communication/peer/peer_server/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/communication/peer/peer_server/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/cifar/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/cifar/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/cifar/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/fl_dataset/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/fl_dataset/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/fl_dataset/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/mnist/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/mnist/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/mnist/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/sampler/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/sampler/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/sampler/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/split_dataset/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/split_dataset/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/split_dataset/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/reference/datasets/utils/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/reference/datasets/utils/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/reference/datasets/utils/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/about/changelog/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/about/changelog/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/about/changelog/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/about/contact/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/about/contact/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/about/contact/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/api/api_reference/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/api/api_reference/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/api/api_reference/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/faq/faq/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/faq/faq/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/faq/faq/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/installation/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/installation/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/installation/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_keras/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_keras/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_keras/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_mxnet/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_mxnet/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_mxnet/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_opacus/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_opacus/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_opacus/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_pytorch/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_pytorch/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_pytorch/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_smpc/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_smpc/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_smpc/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/quick_start/quickstart_tensorflow/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/quick_start/quickstart_tensorflow/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/quick_start/quickstart_tensorflow/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/argument/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/argument/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/argument/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/contributor_guide/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/contributor_guide/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/contributor_guide/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/custom_aggregation_strategy/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/custom_aggregation_strategy/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/custom_aggregation_strategy/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/metrics_visualization/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/metrics_visualization/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/metrics_visualization/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/run_in_container/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/run_in_container/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/run_in_container/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/strategy/fednova/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/strategy/fednova/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/strategy/fednova/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/strategy/fedopt/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/strategy/fedopt/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/strategy/fedopt/"/>
+         
+    </url>
+    <url>
+         <loc>https://iflytek.github.io/iflearner/tutorial/strategy/qfedavg/</loc>
+         <lastmod>2022-09-30</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://iflytek.github.io/iflearner/en/tutorial/strategy/qfedavg/"/>
+         <xhtml:link rel="alternate" hreflang="zh" href="https://iflytek.github.io/iflearner/zh/tutorial/strategy/qfedavg/"/>
+         
+    </url>
+</urlset>
