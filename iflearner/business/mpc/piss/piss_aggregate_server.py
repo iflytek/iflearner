@@ -13,15 +13,11 @@
 #  limitations under the License.
 #  ==============================================================================
 import argparse
-import json
 from importlib import import_module
-from threading import Thread
 from typing import Any, Dict, Union
 
 from iflearner.communication.mpc.piss import piss_server
 from iflearner.communication.base import base_server
-from iflearner.communication.mpc.piss import piss_pb2, piss_pb2_grpc
-from iflearner.business.mpc.piss import piss_client_controller
 
 class PissAggregateServer:
 
@@ -39,7 +35,7 @@ def main():
 
 
     parser.add_argument(
-        "--addr", help="the server address", default="127.0.0.1:12095", type=str
+        "--addr", help="the server address", default="127.0.0.1:20001", type=str
     )
     parser.add_argument(
         "--name", help="the server name", default="server", type=str

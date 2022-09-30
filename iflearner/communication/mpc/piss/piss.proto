@@ -33,6 +33,13 @@ message SubSecretsSUM{
     map<string, string> sub_keys_sum= 1;  
 }
 
+message SecretsSUM{
+    string secrets_sum= 1;  
+}
+
+message CallBack{
+    string call_back_msg = 1;
+}
 
 
 

@@ -14,7 +14,6 @@
 #  ==============================================================================
 
 from importlib import import_module
-from loguru import logger
 from iflearner.business.mpc.piss.piss_client_controller import PissClientServicesController
 from iflearner.business.mpc.piss.argument import parser
 

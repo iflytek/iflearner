@@ -49,6 +49,9 @@ class PissServer(PissBase):
             elif type ==message_type.MSG_PARTICIPANTS_ROUTES:
                 resp = self._send(stub, req)
 
+            elif type == message_type.MSG_END_QUERY:
+                resp = self._callback(stub, req)
+
             if resp.code != 0:  # type: ignore
                 raise PissException(code=PissException.PissResponseCode(resp.code), message=resp.message  # type: ignore
                     )
@@ -109,14 +112,11 @@ class PissServer(PissBase):
                             raise PissException(PissException.PissResponseCode.InsufficientParty, 
                                             "Insufficient number of participants")
                         else:
-                            resp = self.transport(type= message_type.MSG_PARTICIPANTS_ROUTES,
+                            self.transport(type= message_type.MSG_PARTICIPANTS_ROUTES,
                                                 stub= self._strategy.get_initiator_stub(),
                                                 data= data)
 
-                            if resp.code !=0:  # type: ignore
-                                raise PissException(code=PissException.PissResponseCode(resp.code), 
-                                                        message=resp.message  # type: ignore
-                                                    )
+
                             
         except PissException as e:
             logger.info(e)
@@ -168,7 +168,32 @@ class PissServer(PissBase):
             )
 
     def callback(self, request: base_pb2.BaseRequest, context: Any) -> base_pb2.BaseResponse:
+        """Call callback function."""
+        try:
+            start = timeit.default_timer()
+            resp_data = None
+            code = 0
+            if request.type == message_type.MSG_END_QUERY:
+                stubs = self._strategy.get_stubs()
+                for rpn in self._strategy.get_ready_party_name_list():
+                    if rpn != self._strategy.get_initiator_party_name():
+                        self.transport(type= message_type.MSG_END_QUERY,
+                                                stub= stubs[rpn])
 
-        resp = None
-        return resp
-
+        except PissException as e:
+            logger.info(e)
+            return base_pb2.BaseResponse(code=e.code, message=e.message)
+        except Exception as e:
+            logger.info(e)
+            return base_pb2.BaseResponse(
+                code=PissException.PissResponseCode.InternalError, message=str(e)
+                )
+        else:
+            if resp_data is None:
+                return base_pb2.BaseResponse(code = code)
+            return base_pb2.BaseResponse(code = code, data=resp_data.SerializeToString())  # type: ignore
+        finally:
+            stop = timeit.default_timer()
+            logger.info(
+                f"IN: party: {request.party_name}, message type: {request.type}, time: {1000 * (stop - start)}ms"
+            ) 
