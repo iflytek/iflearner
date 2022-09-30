@@ -16,24 +16,23 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-
 parser.add_argument(
     "--server",
-    default="127.0.0.1:12095",
+    default="127.0.0.1:20001",
     type=str,
     help="address of aggerating server",
 )
 
 parser.add_argument(
     "--name",
-    default="client003",
+    default="client001",
     type=str,
     help="party name of client",
 )
 
 parser.add_argument(
     "--addr",
-    default="127.0.0.1:57221",
+    default="127.0.0.1:10001",
     type=str,
     help="address of client service",
 )
@@ -49,6 +48,6 @@ parser.add_argument(
     default=None,
     type=str,
     help="path of server SSL cert"
-    """use secure channel to connect to server if not none""",
+    """use secure channel to connect to server if not none"""
 )
 

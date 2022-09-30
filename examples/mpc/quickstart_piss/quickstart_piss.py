@@ -15,16 +15,8 @@
 import argparse
 import json
 from importlib import import_module
-from threading import Thread
 from typing import Any, Dict, Union
-from loguru import logger
-import time
 
-from iflearner.communication.mpc.piss import piss_client_services
-from iflearner.business.mpc.piss import piss_strategy_client
-from iflearner.communication.base import base_server
-from iflearner.communication.mpc.piss import message_type
-from iflearner.communication.mpc.piss import piss_pb2, piss_pb2_grpc
 from iflearner.business.mpc.piss.piss_client_controller import PissClientController
 from iflearner.business.mpc.piss.argument import parser
 
@@ -45,12 +37,11 @@ if __name__ == "__main__":
         help="encryption param"
     )
     parser.add_argument(
-        "--addr",
-        default="127.0.0.1:37221",
+        "--server",
+        default="127.0.0.1:45551",
         type=str,
         help="address of client service"
     )
-
     parser.add_argument(
         "--name",
         default="client_querty",
@@ -58,8 +49,17 @@ if __name__ == "__main__":
         help="querty client name"
     )
 
+    parser.add_argument(
+        "--cert",
+        default=None,
+        type=str,
+        help="path of server SSL cert"
+        """use secure channel to connect to server if not none"""
+    )
+
     args = parser.parse_args()
     print(args)
     controller = PissClientController(args)
     #controller.init_data()
     controller.start_querty()
+    print(controller.get_secrets_sum())
