@@ -14,6 +14,7 @@
 #  ==============================================================================
 
 from abc import ABC, abstractmethod
+from inspect import getmembers, ismethod
 from typing import Dict, Tuple, List, Union, Any
 from iflearner.business.hetero.model.role import Role
 
@@ -48,6 +49,7 @@ class BaseModel(ABC):
     def __init__(self) -> None:
         self._another_steps: Dict[str, handle_another_step] = {}
         self._own_steps: Dict[str, handle_own_step] = {}
+        self._bind_methods()
 
     @abstractmethod
     def set_hyper_params(self, hyper_params: Any) -> None:
@@ -57,6 +59,50 @@ class BaseModel(ABC):
             hyper_params (Any): Details of the hyper params.
         """
         pass
+
+    def _bind_methods(self):
+        """Analyze method documents and then register them to specific steps.
+
+        Format:
+            Bind:
+                step: The step name.
+                role (optional): The role name.(guest host arbiter)
+
+        If role is None, it means the current method is your own step handler.
+        If role is not None, it means the current method is to handle the step of other role.
+        """
+        bind_tag = "Bind:"
+        step_tag = "step:"
+        role_tag = "role:"
+
+        functions_list = [o for o in getmembers(self) if ismethod(o[1])]
+        for func in functions_list:
+            if func[1].__doc__ is None:
+                continue
+
+            lines = func[1].__doc__.split('\n')
+            catch = False
+            step = None
+            role = None
+            for line in lines:
+                line = line.strip()
+                if catch and len(line) > 0:
+                    if line.startswith(step_tag):
+                        step = line[len(step_tag):].strip()
+                    elif line.startswith(role_tag):
+                        role = line[len(role_tag):].strip()
+                    else:
+                        if step is not None:
+                            if role is not None:
+                                self._register_another_step(
+                                    role, step, getattr(self, func[0]))
+                            else:
+                                self._register_own_step(
+                                    step, getattr(self, func[0]))
+                        break
+
+                if line.lower() == bind_tag.lower():
+                    catch = True
 
     def _register_another_step(self, role: Role, step_name: str, func: handle_another_step) -> None:
         """Register a another step handler.

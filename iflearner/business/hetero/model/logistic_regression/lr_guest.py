@@ -29,17 +29,17 @@ class LRGuest(BaseModel):
         self._x, self._y = get_guest_data()
         self._weights = np.zeros(self._x.shape[1])
 
-        self._register_another_step(
-            arbiter, "generate_he_keypair", self.received_he_public_key)
-        self._register_another_step(
-            host, "calc_host_partial_result", self.received_host_partial_result)
-        self._register_another_step(
-            arbiter, "decrypt_guest_data", self.received_weights)
+        # self._register_another_step(
+        #     arbiter, "generate_he_keypair", self.received_he_public_key)
+        # self._register_another_step(
+        #     host, "calc_host_partial_result", self.received_host_partial_result)
+        # self._register_another_step(
+        #     arbiter, "decrypt_guest_data", self.received_weights)
 
-        self._register_own_step("calc_guest_partial_result",
-                                self.calc_guest_partial_result)
-        self._register_own_step(
-            "calc_final_result_with_host", self.calc_final_result_with_host)
+        # self._register_own_step("calc_guest_partial_result",
+        #                         self.calc_guest_partial_result)
+        # self._register_own_step(
+        #     "calc_final_result_with_host", self.calc_final_result_with_host)
 
     def set_hyper_params(self, hyper_params: Any) -> None:
         """Set hyper params.
@@ -58,6 +58,10 @@ class LRGuest(BaseModel):
     def received_he_public_key(self, data: Dict[str, Any]) -> None:
         """Save the HE public key received from the arbiter.
 
+        Bind:
+            step: generate_he_keypair
+            role: arbiter
+
         Args:
             data (Dict[str, Any]): Arbiter party name and public key.
         """
@@ -67,6 +71,9 @@ class LRGuest(BaseModel):
 
     def calc_guest_partial_result(self) -> Dict[Union[Role, str], Any]:
         """Calculate your own partial results.
+
+        Bind:
+            step: calc_guest_partial_result
 
         Returns:
             Dict[Union[Role, str], Any]: Return HE-encrypted data to the host.
@@ -80,6 +87,10 @@ class LRGuest(BaseModel):
     def received_host_partial_result(self, data: Dict[str, Any]) -> None:
         """Save the host partial result.
 
+        Bind:
+            step: calc_host_partial_result
+            role: host
+
         Args:
             data (Dict[str, Any]): Host party name and its data.
         """
@@ -88,6 +99,9 @@ class LRGuest(BaseModel):
 
     def calc_final_result_with_host(self) -> Dict[Union[Role, str], Any]:
         """Calculate the final result combined with the host.
+
+        Bind:
+            step: calc_final_result_with_host
 
         Returns:
             Dict[Union[Role, str], Any]: Return the encrypted result to the arbiter.
@@ -106,6 +120,10 @@ class LRGuest(BaseModel):
 
     def received_weights(self, data: Dict[str, Any]) -> None:
         """Received weights from the arbiter.
+
+        Bind:
+            step: decrypt_guest_data
+            role: arbiter
 
         Args:
             data (Dict[str, Any]): The decrypted data from the arbiter.

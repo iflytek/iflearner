@@ -27,12 +27,12 @@ class LRArbiter(BaseModel):
     def __init__(self) -> None:
         super().__init__()
 
-        self._register_another_step(guest, "calc_final_result_with_host", self.received_guest_encrypted_data)
-        self._register_another_step(host, "calc_final_result_with_guest", self.received_host_encrypted_data)
+        # self._register_another_step(guest, "calc_final_result_with_host", self.received_guest_encrypted_data)
+        # self._register_another_step(host, "calc_final_result_with_guest", self.received_host_encrypted_data)
 
-        self._register_own_step("generate_he_keypair", self.generate_he_keypair)
-        self._register_own_step("decrypt_guest_data", self.decrypt_guest_data)
-        self._register_own_step("decrypt_host_data", self.decrypt_host_data)
+        # self._register_own_step("generate_he_keypair", self.generate_he_keypair)
+        # self._register_own_step("decrypt_guest_data", self.decrypt_guest_data)
+        # self._register_own_step("decrypt_host_data", self.decrypt_host_data)
         
     def set_hyper_params(self, hyper_params: Any) -> None:
         """Set hyper params.
@@ -45,6 +45,9 @@ class LRArbiter(BaseModel):
     def generate_he_keypair(self) -> Dict[Union[Role, str], Any]:
         """Generate HE public key and private key.
 
+        Bind:
+            step: generate_he_keypair
+
         Returns:
             Dict[Union[Role, str], Any]: Return the HE public key to the guest and host.
         """
@@ -56,6 +59,10 @@ class LRArbiter(BaseModel):
     def received_guest_encrypted_data(self, data: Dict[str, Any]) -> None:
         """Save encrypted data from the guest.
 
+        Bind:
+            step: calc_final_result_with_host
+            role: guest
+
         Args:
             data (Dict[str, Any]): Guest party name and encrypted data.
         """
@@ -66,6 +73,10 @@ class LRArbiter(BaseModel):
     def received_host_encrypted_data(self, data: Dict[str, Any]) -> None:
         """Save encrypted data from the host.
 
+        Bind:
+            step: calc_final_result_with_guest
+            role: host
+
         Args:
             data (Dict[str, Any]): Host party name and encrypted data.
         """
@@ -73,6 +84,9 @@ class LRArbiter(BaseModel):
     
     def decrypt_guest_data(self) -> Dict[Union[Role, str], Any]:
         """Decrypt guest data.
+
+        Bind:
+            step: decrypt_guest_data
 
         Returns:
             Dict[Union[Role, str], Any]: Return guest role name and its decrypted data.
@@ -82,6 +96,9 @@ class LRArbiter(BaseModel):
     
     def decrypt_host_data(self) -> Dict[Union[Role, str], Any]:
         """Decrypt host data.
+
+        Bind:
+            step: decrypt_host_data
 
         Returns:
             Dict[Union[Role, str], Any]: Return host role name and its decrypted data.
