@@ -1,3 +1,19 @@
+#  Copyright 2022 iFLYTEK. All Rights Reserved.
+#  #
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#  #
+#      http://www.apache.org/licenses/LICENSE-2.0
+#  #
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#  ==============================================================================
+
+
 from random import random
 from tkinter import NO
 from typing import Any, Dict
@@ -11,6 +27,7 @@ import copy
 import pandas as pd
 import hashlib
 import random
+from iflearner.communication.mpc.piss import message_type
 from iflearner.communication.mpc.piss.piss_exception import PissException
 from iflearner.communication.mpc.piss import piss_pb2
 from iflearner.business.mpc.piss.piss_startegy_base import PissStrategyBase 
@@ -80,6 +97,7 @@ class PissStrategyClient(PissStrategyBase):
 
         self._virtual_client = 'virtual_client'
         self._party_name_list = [self._virtual_client]
+        self._secrets_sum_ready = False
 
     def get_party_name_list(self):
         """
@@ -108,6 +126,13 @@ class PissStrategyClient(PissStrategyBase):
             self._initiator_stub:Connection handles for initiator.
         """
         return self._initiator_stub
+
+    def get_initiator_party_name(self):
+        """
+        Returns:
+            self._initiator_party_name.
+        """
+        return self._initiator_party_name
 
     def generate_participants_stubs(self, data: piss_pb2.ParticipantsRoutes)-> None:
         """
@@ -275,7 +300,6 @@ class PissStrategyClient(PissStrategyBase):
         return sub_keys_sum
 
     def sub_key_sum(self):
-
         if self._virtual_client in self._party_name_list:
             self._party_name_list.remove(self._virtual_client)
             self._party_name_list.sort()
@@ -286,7 +310,7 @@ class PissStrategyClient(PissStrategyBase):
             self._sub_keys_sum_recv[self._party_name] = self._sub_keys_sum
             self._sub_keys_sum_recv[self._virtual_client] = self._virtual_sub_keys_sum
             self._recv_sum_num += 1
-            return 'initiator'
+            return message_type.MSG_INITIATOR
         else:                
             self._sub_keys_sum = self.c_sub_keys(self._sub_keys_recv)
             return self._sub_keys_sum 
@@ -329,6 +353,9 @@ class PissStrategyClient(PissStrategyBase):
         else:
             return False
 
+    def secrets_sum_ready(self):
+        return self._secrets_sum_ready
+
     def reconstruct_sum_secrets(self):
         """
         Reconstruct secret
@@ -347,6 +374,8 @@ class PissStrategyClient(PissStrategyBase):
             x.append(self._party_name_list.index(client)+1)
             y.append(l)
         secrets_sum = self.decrypt(x,y)
+        #print(secrets_sum)
+        self._secrets_sum_ready = True
         return secrets_sum
 
     def decrypt(self,x,y):
@@ -412,12 +441,6 @@ class PissStrategyClient(PissStrategyBase):
             else:
                 metadata.append(0)
         return metadata
-
-
-
-
-
-        
 
 
 
