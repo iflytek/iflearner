@@ -17,6 +17,8 @@ import json
 import yaml
 import argparse
 from typing import Any, Tuple, Dict, List
+import sys
+sys.path.append("/data1/jhjiang/iflearner/")
 from iflearner.business.hetero.model.role import Role, role_class
 
 
@@ -122,9 +124,8 @@ class Parser:
         """
         with open(path, "r") as stream:
             data = yaml.safe_load(stream)
-
+            init_steps = []
             if "init_steps" in data and data["init_steps"] is not None:
-                init_steps = []
                 for init_step in data["init_steps"]:
                     virtual = False
                     if "virtual" in init_step:

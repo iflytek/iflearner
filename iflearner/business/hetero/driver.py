@@ -19,7 +19,8 @@ import time
 from os.path import join
 from typing import Any
 from loguru import logger
-
+import sys
+sys.path.append("/data1/jhjiang/iflearner/")
 from iflearner.business.hetero.parser import Parser
 from iflearner.business.hetero.builder.builders import Builders
 from iflearner.communication.hetero.hetero_network import HeteroNetwork

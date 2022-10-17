@@ -17,8 +17,10 @@ from typing import Dict
 from iflearner.business.hetero.model.base_model import BaseModel
 from iflearner.business.hetero.builder.demo_builder import DemoBuilder
 from iflearner.business.hetero.builder.lr_builder import LRBuilder
+from iflearner.business.hetero.builder.Xgboost_builder import XGboostBuilder
 
 Builders: Dict[str, BaseModel] = {
     "demo": DemoBuilder(),
     "logistic_regression": LRBuilder(),
+    "Xgboost": XGboostBuilder()
 }

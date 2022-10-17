@@ -1,0 +1,10 @@
+role: guest
+steps:
+  - name: calu_encry_grdient_hess
+    upstreams:
+      - role: host
+        step: encry_label
+  - name: guest_build_tree
+    upstreams:
+      - role: host
+        step: calu_gain_compare

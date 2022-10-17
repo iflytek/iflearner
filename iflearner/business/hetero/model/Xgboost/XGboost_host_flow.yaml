@@ -1,0 +1,14 @@
+role: host
+steps:
+  - name: calucate_gini
+    upstreams: null
+  - name: encry_label
+    upstreams: null
+  - name: calu_gain_compare
+    upstreams:
+      - role: guest
+        step: calu_encry_grdient_hess
+  - name: build_tree
+    upstreams:
+      - role: guest
+        step: guest_build_tree
