@@ -1,0 +1,8 @@
+role: host
+steps:
+  - name: step1
+    upstreams: null
+  - name: step2
+    upstreams:
+      - role: guest
+        step: step1

@@ -1,0 +1,19 @@
+role: host
+init_steps:
+  - name: get_he_public_key
+    upstreams:
+      - role: arbiter
+        step: generate_he_keypair
+    virtual: true
+steps:
+  - name: calc_host_partial_result
+    upstreams: null
+  - name: calc_final_result_with_guest
+    upstreams:
+      - role: guest
+        step: calc_guest_partial_result
+  - name: update_weights
+    upstreams:
+      - role: arbiter
+        step: decrypt_host_data
+    virtual: true

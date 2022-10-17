@@ -1,0 +1,9 @@
+guest:
+  - name: guest-1
+    addr: 127.0.0.1:50050
+host:
+  - name: host-1
+    addr: 127.0.0.1:50051
+arbiter:
+  - name: arbiter-1
+    addr: 127.0.0.1:50052
