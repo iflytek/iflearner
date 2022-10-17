@@ -43,5 +43,11 @@ iFLearner主要基于以下原则进行设计:
 ## FAQ
 [iFLeaner FAQ](https://iflytek.github.io/zh/iflearner/faq/faq/)
 
+## 联系我们
+![](https://i0.hdslb.com/bfs/album/cc526aa060e19ed7f1ab21fe621d740538364172.jpg)
+注意备注来源: 开源
+
 ## License
 [Apache License 2.0](https://github.com/iflytek/iflearner/blob/main/LICENSE)
+
+
