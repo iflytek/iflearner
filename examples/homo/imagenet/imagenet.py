@@ -25,7 +25,11 @@ import torchvision.models as models
 import torchvision.transforms as transforms
 from opacus import PrivacyEngine
 from opacus.utils import module_modification
-from torch.optim.lr_scheduler import StepLR
+from torch.optim.lr_scheduler import StepLR, LambdaLR
+
+from iflearner.communication.homo import homo_pb2
+from iflearner.business.homo import pytorch_trainer, train_client
+from iflearner.business.homo.argument import parser
 
 sys.path.append("../../../")
 
@@ -40,7 +44,6 @@ model_names = sorted(
 )
 
 # parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-from iflearner.business.homo.argument import parser
 
 parser.add_argument(
     "data",
@@ -54,7 +57,8 @@ parser.add_argument(
     metavar="ARCH",
     default="resnet18",
     choices=model_names,
-    help="model architecture: " + " | ".join(model_names) + " (default: resnet18)",
+    help="model architecture: " +
+    " | ".join(model_names) + " (default: resnet18)",
 )
 parser.add_argument(
     "-j",
@@ -92,7 +96,8 @@ parser.add_argument(
     help="initial learning rate",
     dest="lr",
 )
-parser.add_argument("--momentum", default=0.9, type=float, metavar="M", help="momentum")
+parser.add_argument("--momentum", default=0.9, type=float,
+                    metavar="M", help="momentum")
 parser.add_argument(
     "--wd",
     "--weight-decay",
@@ -158,15 +163,13 @@ parser.add_argument(
     "multi node data parallel training",
 )
 
-parser.add_argument("--scaffold", help="Enable scaffold (1 | 0).", type=int, default=0)
+parser.add_argument(
+    "--scaffold", help="Enable scaffold (1 | 0).", type=int, default=0)
 parser.add_argument(
     "--dp", help="Enable differential privacy (1 | 0).", type=int, default=0
 )
 
 best_acc1 = 0
-
-from iflearner.business.homo import pytorch_trainer, train_client
-from iflearner.communication.homo import homo_pb2
 
 
 class ImageNet(pytorch_trainer.PyTorchTrainer):
@@ -261,17 +264,6 @@ class ImageNet(pytorch_trainer.PyTorchTrainer):
 
         return {"top1": float(top1), "top5": float(top5)}
 
-    def get(self, param_type=""):
-        parameters = dict()
-        for name, p in self._model.named_parameters():
-            if p.requires_grad:
-                parameters[name] = (
-                    self._old_weights[name].cpu().detach().numpy()
-                    - self._new_weights[name].cpu().detach().numpy()
-                )
-
-        return parameters
-
 
 def main():
     args = parser.parse_args()
@@ -307,7 +299,8 @@ def main():
         args.world_size = ngpus_per_node * args.world_size
         # Use torch.multiprocessing.spawn to launch distributed processes: the
         # main_worker process function
-        mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
+        mp.spawn(main_worker, nprocs=ngpus_per_node,
+                 args=(ngpus_per_node, args))
     else:
         # Simply call main_worker function
         main_worker(args.gpu, ngpus_per_node, args)
@@ -341,6 +334,8 @@ def main_worker(gpu, ngpus_per_node, args):
         print("=> creating model '{}'".format(args.arch))
         model = models.__dict__[args.arch]()
 
+    print(model)
+
     if not torch.cuda.is_available():
         print("using CPU, this will be slow")
     elif args.distributed:
@@ -354,7 +349,8 @@ def main_worker(gpu, ngpus_per_node, args):
             # DistributedDataParallel, we need to divide the batch size
             # ourselves based on the total number of GPUs of the current node.
             args.batch_size = int(args.batch_size / ngpus_per_node)
-            args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
+            args.workers = int(
+                (args.workers + ngpus_per_node - 1) / ngpus_per_node)
             model = torch.nn.parallel.DistributedDataParallel(
                 model, device_ids=[args.gpu]
             )
@@ -391,6 +387,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
     """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
     scheduler = StepLR(optimizer, step_size=30, gamma=0.1)
+    # scheduler = LambdaLR(optimizer, lambda epoch: 1.0)
 
     # optionally resume from a checkpoint
     if args.resume:
@@ -440,7 +437,8 @@ def main_worker(gpu, ngpus_per_node, args):
     )
 
     if args.distributed:
-        train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
+        train_sampler = torch.utils.data.distributed.DistributedSampler(
+            train_dataset)
     else:
         train_sampler = None
 

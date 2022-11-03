@@ -55,7 +55,6 @@ class StrategyServer(ABC):
         _uploaded_num (int): the number of client that has uploaded its model parameters
         _aggregated_num (int): the number of client that has aggregated its model parameters
         _on_aggregating (bool): whether the server is in aggregating stage
-        _params (dict): the server model parameters
     """
 
     def __init__(self, num_clients, total_epoch) -> None:
@@ -70,7 +69,6 @@ class StrategyServer(ABC):
         self._uploaded_num = 0
         self._aggregated_num = 0
         self._on_aggregating = False
-        self._params: dict = {}
         self._metric = Metric(logdir="metric")
 
     def _exit(self) -> None:
@@ -91,7 +89,6 @@ class StrategyServer(ABC):
 
         tmp = dict()
         for k, v in self._clients.items():
-            print(k, v)
             tmp[k] = v.__dict__
 
         return json.dumps(tmp)
@@ -174,23 +171,17 @@ class StrategyServer(ABC):
             HomoException:  if party_name not in the training_clients list, raise the Forbidden error
         """
         logger.info(f"Client: {party_name}, epoch: {data.epoch}")
+
         if party_name not in self._training_clients:
             raise HomoException(
                 HomoException.HomoResponseCode.Forbidden, "Client not notified."
             )
 
-        self._training_clients[party_name]["param"] = data.parameters
-        self._uploaded_num += 1
-        if self._params is None:
-            self._params = dict()
-            for param_name, param_info in data.parameters.items():
-                self._params[param_name] = np.array(param_info.values).reshape(
-                    param_info.shape
-                )
-
         if data.metrics is not None:
             for k, v in data.metrics.items():
                 self._metric.add(k, party_name, data.epoch, v)
+
+        self._training_clients[party_name]["param"] = data.parameters
 
     def get_client_notification(self, party_name: str) -> Tuple[str, Any]:
         """Get the notification information of the specified client.
@@ -205,7 +196,8 @@ class StrategyServer(ABC):
             if self._on_aggregating:
                 if not self._training_clients[party_name].get("aggregating", False):
                     self._training_clients[party_name]["aggregating"] = True
-                    result = homo_pb2.AggregateResult(parameters=self._server_param)
+                    result = homo_pb2.AggregateResult(
+                        parameters=self._server_param)
 
                     self._aggregated_num += 1
                     if self._aggregated_num == self._num_clients:

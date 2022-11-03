@@ -101,7 +101,8 @@ class StrategyClient(ABC):
         for k, v in data.items():
             pb_params[k] = homo_pb2.Parameter(values=v.ravel(), shape=v.shape)
 
-        data = homo_pb2.UploadParam(epoch=epoch, parameters=pb_params, metrics=metrics)
+        data = homo_pb2.UploadParam(
+            epoch=epoch, parameters=pb_params, metrics=metrics)
 
         return data
 
@@ -130,7 +131,8 @@ class StrategyClient(ABC):
                 data_c[k.replace(self._gradient_suffix, "")] = homo_pb2.Parameter(
                     shape=v.shape
                 )
-                data_c[k.replace(self._gradient_suffix, "")].values.extend(v.values)
+                data_c[k.replace(self._gradient_suffix, "")
+                       ].values.extend(v.values)
             else:
                 data_m[k] = homo_pb2.Parameter(shape=v.shape)
                 data_m[k].values.extend(v.values)
@@ -138,7 +140,8 @@ class StrategyClient(ABC):
         self._aggregate_result = homo_pb2.AggregateResult(parameters=data_m)
         self._aggregate_result_np = {}  # type: ignore
         for k, v in data_m.items():
-            self._aggregate_result_np[k] = np.asarray(v.values).reshape(v.shape)  # type: ignore
+            self._aggregate_result_np[k] = np.asarray(
+                v.values).reshape(v.shape)  # type: ignore
 
         self._aggregate_c = homo_pb2.AggregateResult(parameters=data_c)
         self._current_stage = self.Stage.Setting

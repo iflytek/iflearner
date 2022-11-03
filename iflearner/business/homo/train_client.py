@@ -25,6 +25,7 @@ from iflearner.business.homo.strategy import (
     fednova_client,
     fedopt_client,
     qfedavg_client,
+    stc_client,
 )
 from iflearner.business.homo.strategy.strategy_client import StrategyClient
 from iflearner.business.homo.trainer import Trainer
@@ -65,7 +66,8 @@ class Controller:
             if index == 0:
                 srv = peer_server.PeerServer(len(peer_list) - 1)
                 t = Thread(
-                    target=base_server.start_server, args=(peer_list[index], srv)
+                    target=base_server.start_server, args=(
+                        peer_list[index], srv)
                 )
                 t.start()
             else:
@@ -129,6 +131,8 @@ class Controller:
             self._strategy = fedavg_client.FedavgClient()
         elif resp.strategy == message_type.STRATEGY_SCAFFOLD:
             self._strategy = fedavg_client.FedavgClient(True)
+        elif resp.strategy == message_type.STRATEGY_STC:
+            self._strategy = stc_client.STCClient()
 
         elif resp.strategy == message_type.STRATEGY_FEDOPT:
             self._strategy = fedopt_client.FedoptClient()  # type: ignore
@@ -156,7 +160,8 @@ class Controller:
             ):
                 logger.info(f"----- fit <{learning_type}> -----")
                 if learning_type == self._local_training:
-                    self._trainer.set(self._local_training_param)  # type: ignore
+                    self._trainer.set(
+                        self._local_training_param)  # type: ignore
                     current_epoch = self._epoch - 1
                 else:
                     current_epoch = self._epoch
@@ -181,7 +186,8 @@ class Controller:
                             learning_type == self._federated_training
                             and self._epoch == 1
                         ):
-                            self._metric.add(k, self._local_training, current_epoch, v)
+                            self._metric.add(
+                                k, self._local_training, current_epoch, v)
 
                 logger.info(f"----- get <{learning_type}> -----")
                 client_param = self._trainer.get()
@@ -206,9 +212,11 @@ class Controller:
                 if self._sum_random_value != 0.0:
                     smpc_data = dict()
                     for k, v in upload_param.parameters.items():
-                        smpc_data[k] = homo_pb2.Parameter(shape=v.shape)  # type: ignore
+                        smpc_data[k] = homo_pb2.Parameter(
+                            shape=v.shape)  # type: ignore
                         smpc_data[k].values.extend(
-                            [item + self._sum_random_value for item in v.values]  # type: ignore
+                            # type: ignore
+                            [item + self._sum_random_value for item in v.values]
                         )
                     upload_param = homo_pb2.UploadParam(
                         epoch=upload_param.epoch, parameters=smpc_data, metrics=metrics
@@ -230,6 +238,7 @@ class Controller:
                 self._global_params = self._strategy.aggregate_result()
                 self._trainer.set(self._global_params)
                 self._strategy.set_current_stage(StrategyClient.Stage.Waiting)
-                self._network_client.transport(message_type.MSG_CLIENT_READY, None)
+                self._network_client.transport(
+                    message_type.MSG_CLIENT_READY, None)
             else:
                 time.sleep(1)

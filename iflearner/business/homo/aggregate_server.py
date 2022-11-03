@@ -26,6 +26,7 @@ from iflearner.business.homo.strategy import (
     fednova_server,
     fedopt_server,
     qfedavg_server,
+    stc_server,
 )
 from iflearner.business.homo.strategy.strategy_server import StrategyServer
 from iflearner.communication.base import base_server
@@ -59,6 +60,10 @@ class AggregateServer:
                     num_clients, epochs, True, **strategy_params
                 )
 
+            elif strategy == message_type.STRATEGY_STC:
+                self._strategy_server = stc_server.STCServer(
+                    num_clients, epochs)
+
             elif strategy == message_type.STRATEGY_FEDOPT:
                 if strategy_params.get("opt") is None:
                     raise Exception("expect 'opt' when you use fedopt sever")
@@ -75,7 +80,8 @@ class AggregateServer:
                         opt=opt,
                     )  # type: ignore
                     logger.info(
-                        " ".join([f"{k}:{v}" for k, v in strategy_params.items()])
+                        " ".join(
+                            [f"{k}:{v}" for k, v in strategy_params.items()])
                     )
 
             elif strategy == message_type.STRATEGY_qFEDAVG:
@@ -127,7 +133,7 @@ def main():
     )
     parser.add_argument(
         "--strategy",
-        help="the aggregation starategy (FedAvg | Scaffold | FedOpt | qFedAvg | FedNova)",
+        help="the aggregation starategy (FedAvg | Scaffold | STC | FedOpt | qFedAvg | FedNova)",
         default="FedAvg",
         type=str,
     )

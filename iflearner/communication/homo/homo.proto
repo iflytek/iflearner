@@ -18,8 +18,9 @@ message AggregateResult {
 }
 
 message Parameter {
-  repeated double values = 1;
-  repeated int32 shape = 2;
+  repeated int32 shape = 1;
+  repeated double values = 2;
+  bytes custom_values = 3;
 }
 
 message RegistrationInfo {

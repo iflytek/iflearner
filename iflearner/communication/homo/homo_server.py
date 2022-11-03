@@ -16,7 +16,7 @@ import timeit
 from typing import Any
 
 from loguru import logger
-
+from iflearner.business.util.metric import Metric
 from iflearner.business.homo.strategy import strategy_server
 from iflearner.communication.base import base_pb2, base_server
 from iflearner.communication.homo import homo_pb2, message_type
@@ -29,6 +29,8 @@ class HomoServer(base_server.BaseServer):
     def __init__(self, strategy: strategy_server.StrategyServer) -> None:
         self._callback_messages: dict = dict()
         self._strategy = strategy
+        self._metric = Metric(logdir="metric")
+        self._index = 0
 
     def send(
         self, request: base_pb2.BaseRequest, context: Any
@@ -45,9 +47,11 @@ class HomoServer(base_server.BaseServer):
                     request.party_name, data.sample_num, data.step_num
                 )
             elif request.type == message_type.MSG_CLIENT_READY:
-                resp_data = self._strategy.handler_client_ready(request.party_name)  # type: ignore
+                resp_data = self._strategy.handler_client_ready(
+                    request.party_name)
             elif request.type == message_type.MSG_COMPLETE:
-                resp_data = self._strategy.handler_complete(request.party_name)  # type: ignore
+                resp_data = self._strategy.handler_complete(
+                    request.party_name)
             elif request.type in self._strategy.custom_handlers:
                 resp_data = self._strategy.custom_handlers[request.type](
                     request.party_name, request.data
@@ -58,12 +62,13 @@ class HomoServer(base_server.BaseServer):
         except Exception as e:
             logger.info(e)
             return base_pb2.BaseResponse(
-                code=HomoException.HomoResponseCode.InternalError, message=str(e)
+                code=HomoException.HomoResponseCode.InternalError, message=str(
+                    e)
             )
         else:
             if resp_data is None:
                 return base_pb2.BaseResponse()
-            return base_pb2.BaseResponse(data=resp_data.SerializeToString())  # type: ignore
+            return base_pb2.BaseResponse(data=resp_data.SerializeToString())
         finally:
             stop = timeit.default_timer()
             logger.info(
@@ -79,25 +84,31 @@ class HomoServer(base_server.BaseServer):
             start = timeit.default_timer()
             resp_data = None
             if request.type == message_type.MSG_UPLOAD_PARAM:
+                self._index += 1
+                self._metric.add("Network download traffic",
+                                 request.party_name, self._index, len(request.data) / 1024 / 1024)
+
                 req_data = homo_pb2.UploadParam()
                 req_data.ParseFromString(request.data)
                 resp_data = self._strategy.handler_upload_param(
                     request.party_name, req_data
-                )  # type: ignore
+                )
             elif request.type in self._strategy.custom_handlers:
-                resp_data = self._strategy.custom_handlers[request.type](request.data)
+                resp_data = self._strategy.custom_handlers[request.type](
+                    request.data)
         except HomoException as e:
             logger.info(e)
             return base_pb2.BaseResponse(code=e.code, message=e.message)
         except Exception as e:
             logger.info(e)
             return base_pb2.BaseResponse(
-                code=HomoException.HomoResponseCode.InternalError, message=str(e)
+                code=HomoException.HomoResponseCode.InternalError, message=str(
+                    e)
             )
         else:
             if resp_data is None:
                 return base_pb2.BaseResponse()
-            return base_pb2.BaseResponse(data=resp_data.SerializeToString())  # type: ignore
+            return base_pb2.BaseResponse(data=resp_data.SerializeToString())
         finally:
             stop = timeit.default_timer()
             logger.info(
@@ -110,8 +121,9 @@ class HomoServer(base_server.BaseServer):
         """The channel of pushing message to clients initiatively."""
 
         start = timeit.default_timer()
-        type, resp_data = self._strategy.get_client_notification(request.party_name)
-        if type is not None:
+        type, resp_data = self._strategy.get_client_notification(
+            request.party_name)
+        if type is not None and type != "":
             stop = timeit.default_timer()
             logger.info(
                 f"OUT: party: {request.party_name}, message type: {type}, time: {1000 * (stop - start)}ms"

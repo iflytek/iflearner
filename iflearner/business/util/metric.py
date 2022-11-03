@@ -39,6 +39,7 @@ class Metric:
         """
 
         if label not in self._writers:
-            self._writers[label] = LogWriter(logdir=f"{self._logdir}/{label}", display_name=label)
+            self._writers[label] = LogWriter(
+                logdir=f"{self._logdir}/{label}", display_name=label)
 
         self._writers[label].add_scalar(f"{self._tag_prefix}/{name}", y, x)

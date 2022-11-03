@@ -44,6 +44,7 @@ class HomoClient(base_client.BaseClient):
         req = base_pb2.BaseRequest(party_name=self._party_name, type=type)
         if data is not None:
             req.data = data.SerializeToString()
+            logger.info(f"Transport data size: {len(req.data)}")
 
         resp = None
         if type == message_type.MSG_REGISTER:
@@ -56,11 +57,13 @@ class HomoClient(base_client.BaseClient):
             resp = self._send(req)
 
         stop = timeit.default_timer()
-        logger.info(f"OUT: message type: {type}, time: {1000 * (stop - start)}ms")
+        logger.info(
+            f"OUT: message type: {type}, time: {1000 * (stop - start)}ms")
 
         if resp.code != 0:  # type: ignore
             raise HomoException(
-                code=HomoException.HomoResponseCode(resp.code), message=resp.message  # type: ignore
+                # type: ignore
+                code=HomoException.HomoResponseCode(resp.code), message=resp.message
             )
 
         if type == message_type.MSG_REGISTER:
